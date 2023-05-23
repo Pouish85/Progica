@@ -39,28 +39,71 @@ class GiteRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Gite[] Returns an array of Gite objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('g')
-//            ->andWhere('g.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('g.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findGiteById(int $id)
+    {
+        return $this->createQueryBuilder('g')
+            ->where('g.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 
-//    public function findOneBySomeField($value): ?Gite
-//    {
-//        return $this->createQueryBuilder('g')
-//            ->andWhere('g.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findAllInsideEquipmentsForAGiteByGiteId(int $id)
+    {
+        return $this->createQueryBuilder('g')
+            ->where('g.id = :id')
+            ->setParameter('id', $id)
+            ->innerJoin('g.equipementInterieur', 'ei')
+            ->addSelect('ei')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findAllOutsideEquipmentsForAGiteByGiteId(int $id)
+    {
+        return $this->createQueryBuilder('g')
+            ->where('g.id = :id')
+            ->setParameter('id', $id)
+            ->innerJoin('g.equipementExterieur', 'ee')
+            ->addSelect('ee')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findAllServicesForAGiteByGiteId(int $id)
+    {
+        return $this->createQueryBuilder('g')
+            ->where('g.id = :id')
+            ->setParameter('id', $id)
+            ->innerJoin('g.service', 's')
+            ->addSelect('s')
+            ->getQuery()
+            ->getResult();
+    }
+
+
+    //    /**
+    //     * @return Gite[] Returns an array of Gite objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('g')
+    //            ->andWhere('g.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('g.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Gite
+    //    {
+    //        return $this->createQueryBuilder('g')
+    //            ->andWhere('g.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

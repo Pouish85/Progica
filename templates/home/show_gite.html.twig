@@ -3,12 +3,12 @@
 {% block title %}Gite | nom du gite{% endblock %}
 
 {% block body %}
-    <div class="flex h-full items-center justify-center">
+    <div class="flex h-full items-center justify-center w-[1500px]">
         <div class="bg-gold-light-opacity flex flex-col border mt-2 rounded-xl p-5">
             <div class="flex flex-col justify-center">
-                <h1 class="text-center mb-5 text-3xl">Nom du gite</h1>
+                <h1 class="text-center mb-5 text-3xl">{{ gite.nomGite}}</h1>
                 <div class="info flex h-full flex-row justify-center">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/The_station_pictured_from_the_SpaceX_Crew_Dragon_5.jpg/220px-The_station_pictured_from_the_SpaceX_Crew_Dragon_5.jpg" alt="photo gite" class="h-64 w-64 object-cover" />
+                    <img src="{{ gite.image}}" class=" h-60 rounded-xl"/>
                     <div class="flex flex-row">
                         <div class="flex list-none flex-col ml-10">
                             <li>Nombre de chambres: </li>
@@ -18,11 +18,11 @@
                             <li class="mt-[7rem] text-xl"><i class="fa-solid fa-coins"></i></li>
                         </div>
                         <div class="flex list-none flex-col ml-10">
-                            <li>4</li>
-                            <li>150 m²</li>
-                            <li>6</li>
-                            <li>4</li>
-                            <li class="mt-[7rem] text-l">1128 € /nuits</i></li>
+                            <li>{{ gite.nbChambres}}</li>
+                            <li>{{ gite.surface}} m²</li>
+                            <li>{{ gite.nbChambres * 2 }}</li>
+                            <li>{{ gite.nbChambres }}</li>
+                            <li class="mt-[7rem] text-l">{{ gite.prix.tarif }} € /nuit</i></li>
                         </div>
                     </div>
                 </div>
@@ -30,27 +30,21 @@
             <div class="flex flex-row justify-center mt-5 mb-10 space-x-10">
                 <div class="accessInter list-none text-center">
                     <h1 class="mb-4 text-xl">Accessoires interieur:</h1>
-                    <li>access 1</li>
-                    <li>access 2</li>
-                    <li>access 3</li>
-                    <li>access 4</li>
-                    <li>access 5</li>
+                        {% for equipementInt in equipementsInt %}
+                            <li>{{ equipementInt.nom }}</li>
+                        {% endfor %}
                 </div>
                 <div class="accessExter list-none text-center">
                     <h1 class="mb-4 text-xl">Accessoires exterieur:</h1>
-                    <li>access 1</li>
-                    <li>access 2</li>
-                    <li>access 3</li>
-                    <li>access 4</li>
-                    <li>access 5</li>
+                        {% for equipementExt in equipementsExt %}
+                            <li>{{ equipementExt.nom }}</li>
+                        {% endfor %}
                 </div>
                 <div class="accessInter list-none text-center">
                     <h1 class="mb-4 text-xl">Services disponible:</h1>
-                    <li>services 1</li>
-                    <li>services 2</li>
-                    <li>services 3</li>
-                    <li>services 4</li>
-                    <li>services 5</li>
+                    {% for service in services %}
+                            <li>{{ service.nom }}</li>
+                        {% endfor %}
                 </div>
             </div>
         </div>

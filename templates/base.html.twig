@@ -23,21 +23,16 @@
         {% endblock %}
     </head>
     <body
-        class="font-merriweather-sans items-center flex flex-col"
+        class="font-merriweather-sans items-center flex flex-col min-h-screen"
     >
-        <div class="flex flex-col h-screen">
-            <div class="flex flex-col">
+        <div class="flex flex-col w-[1500px]">
             {{ include("partials/_header.html.twig") }}
-                <div class="">
-                    {{ include("partials/_searchbar.html.twig") }}
-                </div>
-            </div>
-            <div class="flex-1">
+            <div class="flex h-[calc(100vh-96px-48px-160px)] overflow-scroll">
                 {% block body %}{% endblock %}
             </div>
-            <div class="w-full">
+            {# <div class="w-full"> #}
                 {{ include("partials/_footer.html.twig") }}
-            </div>
+            {# </div> #}
         </div>
     </body>
 </html>
