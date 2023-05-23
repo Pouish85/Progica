@@ -13,4 +13,10 @@ class HomeController extends AbstractController
     {
         return $this->render('home/index.html.twig');
     }
+
+    #[Route('/gite/{id}', name: "show_gite")]
+    public function showGite(): Response
+    {
+        return $this->render('home/show_gite.html.twig');
+    }
 }

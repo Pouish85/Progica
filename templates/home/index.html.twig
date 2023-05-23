@@ -3,5 +3,44 @@
 {% block title %}Progica | Dream holidays{% endblock %}
 
 {% block body %}
+<div class="grid grid-cols-4 flex-1 max-h-[350px]">
+    <a href="/gite/1" class=" flex flex-col border align-middle justify-center bg-gold-light-opacity p-5 max-w-sm text-center m-1 rounded-md">
+        <h1 class=" text-gold-dark font-bold">ISS</h1>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/The_station_pictured_from_the_SpaceX_Crew_Dragon_5.jpg/220px-The_station_pictured_from_the_SpaceX_Crew_Dragon_5.jpg" alt="gite" class=" text-center rounded">
+        <div class="info mt-2">
+            <div class="flex flex-col">
+                <div class="flex items-center">
+                    <div>
+                        <i class="fa-solid fa-coins"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h2>1128 € /nuit</h2>
+                    </div>
+                </div>
+
+                <div class="flex items-center mt-1">
+                    <div class="">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div class="flex-1 text-xs">
+                        <p class="text-xs" >Espace</p>
+                        <p>Orbite basse terrestre</p>
+                        <p>Espace</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-row justify-center space-x-2 mt-2">
+                <i class="fa-solid fa-dog" title="Chiens acceptés"></i>
+                <i class="fa-solid fa-water-ladder" title="Piscine disponible"></i>
+                <i class="fa-solid fa-mountain" title="A la campagne"></i>
+                <i class="fa-solid fa-city" title="En ville"></i>
+            </div>
+        </div>
+    </a>
+    
+    
+
+</div>
+
 
 {% endblock %}

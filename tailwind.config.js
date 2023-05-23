@@ -8,6 +8,7 @@ module.exports = {
             "secondary-color-light": "#B0FFE6",
             "gold-light": "#F7CA89",
             "gold-dark": "#a07543",
+            "gold-dark-opacity": "#a2764457",
             "gold-light-opacity": "#f7c9895b",
             "dark-color": "#2D3047",
             "danger-color": "#CC2936",
