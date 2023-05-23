@@ -1,7 +1,7 @@
 <div
-    class="max-w-[1200px] min-h-min h-24 bg-black mt-1 flex flex-row items-center justify-center rounded-lg"
+    class="max-w-[1200px] min-h-min h-40 bg-black mt-1 flex flex-row items-center justify-center rounded-lg"
 >
-    <form class="flex flex-row justify-between">
+    <form class="flex flex-row justify-between pt-10 px-10">
         <div class="mr-8 flex-row">
             <div class="up mb-4">
                 <label for="location" class="text-white mr-2">Region: </label>
@@ -41,51 +41,15 @@
                     <option value="more">3 et +</option>
                 </select>
             </div>
-
-            {#
-            <div class="checkbow-dropdown">
-                Equipements
-                <ul class="list">
-                    <li>
-                        <label for="">
-                            <input type="checkbox" value="piscine" />Piscine
-                        </label>
-                    </li>
-                    <li>
-                        <label for="">
-                            <input type="checkbox" value="jacuzzi" />Jacuzzi
-                        </label>
-                    </li>
-                    <li>
-                        <label for="">
-                            <input
-                                type="checkbox"
-                                value="laveVaisselle"
-                            />Lave-vaisselle
-                        </label>
-                    </li>
-                    <li>
-                        <label for="">
-                            <input
-                                type="checkbox"
-                                value="homeCinema"
-                            />Home-Cinema
-                        </label>
-                    </li>
-                </ul>
-            </div>
-            #}
-            <div class="down text-white flex flex-row">
+            <div class="equiments text-white flex flex-row">
                 <label for="equipments" class="mr-4">Equipements :</label>
-            {# <select name="equipments" id="equipments" type="checkbox" class="mr-8" > #}
                 <input type="checkbox" name="piscine" id="piscine" class=""><span class="ml-4 mr-4">Piscine</span></input>
                 <input type="checkbox" name="jacuzzi" id="jacuzzi" ><span class="ml-4 mr-4">Jacuzzi</span></input>
                 <input type="checkbox" name="laveVaisselle" id="laveVaisselle" ><span class="ml-4 mr-4">Lave-vaisselle</span></input>
                 <input type="checkbox" name="homeCinema" id="homeCinema" ><span class="ml-4 mr-4">Home-Cinema</span></input>
-            {# </select> #}
             </div>
-            <div class="searchButton">
-                <button class="text-white bg-gold-dark rounded-full py-3 px-2 justify-end" type="submit"><i class="fa-solid fa-magnifying-glass mr-4"></i>Lancer la recherche</button>
+            <div class="searchButton flex flex-row-reverse pb-10">
+                <button class="text-white bg-gold-dark rounded-full py-1 px-2 justify-end" type="submit"><i class="fa-solid fa-magnifying-glass mr-4"></i>Lancer la recherche</button>
             </div>
         </div>
     </form>
