@@ -28,14 +28,14 @@ class HomeController extends AbstractController
         if (!empty($equipementsInt)) {
             $equipementsInterieurs = $equipementsInt[0]->getEquipementInterieur()->toArray();
         } else {
-            $equipementsInterieurs = ["0" => ['nom' => "Pas d'équipements exterieur"]];
+            $equipementsInterieurs = ["0" => ['nom' => "Pas d'équipements interieur", 'description' => ""]];
         }
 
         $equipementsExt = $giteRepository->findAllOutsideEquipmentsForAGiteByGiteId($id);
         if (!empty($equipementsExt)) {
             $equipementsExterieurs = $equipementsExt[0]->getEquipementExterieur()->toArray();
         } else {
-            $equipementsExterieurs = ["0" => ['nom' => "Pas d'équipements exterieur"]];
+            $equipementsExterieurs = ["0" => ['nom' => "Pas d'équipements exterieur", 'description' => ""]];
         }
 
         $services = $giteRepository->findAllServicesForAGiteByGiteId($id);

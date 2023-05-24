@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Gite | nom du gite{% endblock %}
+{% block title %}Gite | {{ gite.nomGite}}{% endblock %}
 
 {% block body %}
     <div class="flex h-full items-center justify-center w-[1500px]">
         <div class="bg-gold-light-opacity flex flex-col border mt-2 rounded-xl p-5">
             <div class="flex flex-col justify-center">
                 <h1 class="text-center mb-5 text-3xl">{{ gite.nomGite}}</h1>
-                <div class="info flex h-full flex-row justify-center">
+                <div class="info flex h-full flex-row justify-center pb-4 border-b-2 border-dashed">
                     <img src="{{ gite.image}}" class=" h-60 rounded-xl"/>
                     <div class="flex flex-row">
                         <div class="flex list-none flex-col ml-10">
-                            <li>Nombre de chambres: </li>
-                            <li>Superficie: </li>
+                            <li><i class="fa-solid fa-bed"></i>: </li>
+                            <li><i class="fa-solid fa-ruler-combined"></i>: </li>
                             <li><i class="fa-solid fa-user">: </i></li>
                             <li><i class="fa-solid fa-children">: </i></li>
                             <li class="mt-[7rem] text-xl"><i class="fa-solid fa-coins"></i></li>
@@ -21,30 +21,51 @@
                             <li>{{ gite.nbChambres}}</li>
                             <li>{{ gite.surface}} m²</li>
                             <li>{{ gite.nbChambres * 2 }}</li>
-                            <li>{{ gite.nbChambres }}</li>
+                            <li>{{ gite.nbLits - gite.nbChambres }}</li>
                             <li class="mt-[7rem] text-l">{{ gite.prix.tarif }} € /nuit</i></li>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="flex flex-row justify-center mt-5 mb-10 space-x-10">
-                <div class="accessInter list-none text-center">
-                    <h1 class="mb-4 text-xl">Accessoires interieur:</h1>
-                        {% for equipementInt in equipementsInt %}
-                            <li>{{ equipementInt.nom }}</li>
-                        {% endfor %}
+                <div class="flex flex-row justify-center mt-5 mb-8 space-x-10 pb-4 border-b-2 border-dotted">
+                    <div class="accessInter list-none text-center">
+                        <h1 class="mb-4 text-xl">Accessoires interieur:</h1>
+                            {% for equipementInt in equipementsInt %}
+                                <li title="{{ equipementInt.description }}">{{ equipementInt.nom }}</li>
+                            {% endfor %}
+                    </div>
+                    <div class="accessExter list-none text-center">
+                        <h1 class="mb-4 text-xl">Accessoires exterieur:</h1>
+                            {% for equipementExt in equipementsExt %}
+                                <li title="{{ equipementExt.description }}">{{ equipementExt.nom }}</li>
+                            {% endfor %}
+                    </div>
+                    <div class="accessInter list-none text-center">
+                        <h1 class="mb-4 text-xl">Services disponible:</h1>
+                        {% for service in services %}
+                                <li>{{ service.nom }}</li>
+                            {% endfor %}
+                    </div>
                 </div>
-                <div class="accessExter list-none text-center">
-                    <h1 class="mb-4 text-xl">Accessoires exterieur:</h1>
-                        {% for equipementExt in equipementsExt %}
-                            <li>{{ equipementExt.nom }}</li>
-                        {% endfor %}
-                </div>
-                <div class="accessInter list-none text-center">
-                    <h1 class="mb-4 text-xl">Services disponible:</h1>
-                    {% for service in services %}
-                            <li>{{ service.nom }}</li>
-                        {% endfor %}
+                <div class="flex flex-row space-x-4 justify-center align-middle">
+                    <div>
+                        <div class="flex flex-row space-x-4 justify-center align-middle">
+                            <h1 class="mb-4 text-xl"><i class="fa-solid fa-address-card mr-2"></i>Contact:</h1>
+                        </div>
+                        <div class="flex flex-col space-x-4 justify-center align-middle items-center">
+                            <p><i class="fa-solid fa-user"></i>: {{ gite.contact.nom }} {{ gite.contact.prenom }}</p>
+                            <p><i class="fa-solid fa-phone"></i>: {{ gite.contact.telephone }}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex flex-row space-x-4 justify-center align-middle">
+                            <h1 class="mb-4 text-xl"><i class="fa-solid fa-location-dot mr-2"></i>Adresse:</h1>
+                        </div>
+                        <div class="flex flex-col space-x-4 justify-center align-middle items-center">
+                            <p>{{ gite.ville.getNom() }}</p>
+                            <p>{{ gite.ville.departement.getNom() }}</p>
+                            <p>{{ gite.ville.departement.region.getNom() }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
