@@ -1,56 +1,12 @@
-<div
-    class="min-h-min h-40 bg-black mt-1 flex flex-row items-center justify-center rounded-lg"
->
-    <form class="flex flex-row justify-between pt-10 px-10">
-        <div class="mr-8 flex-row">
-            <div class="up mb-4">
-                <label for="location" class="text-white mr-2">Region: </label>
-                <select
-                    name="location"
-                    id="location"
-                    class="mr-4 p-1 rounded-sm"
-                >
-                    <option value="auve">Auvergne-Rhône-Alpes</option>
-                    <option value="bour">Bourgogne-Franche-Comté</option>
-                    <option value="bret">Bretagne</option>
-                    <option value="cent">Centre-Val de Loire</option>
-                    <option value="cors">Corse</option>
-                    <option value="gran">Grand Est</option>
-                    <option value="haut">Hauts-de-France</option>
-                    <option value="iled">Île-de-France</option>
-                    <option value="norm">Normandie</option>
-                    <option value="aqui">Nouvelle Aquitaine</option>
-                    <option value="occi">Occitanie</option>
-                    <option value="aqui">Pays de la Loire</option>
-                    <option value="paca">Provence Alpes Cote d'azur</option>
-                </select>
-                <label for="type" class="text-white mr-2"
-                    >Type de logement:
-                </label>
-                <select name="type" id="type" class="mr-4 p-1 rounded-sm">
-                    <option value="mais">Maison</option>
-                    <option value="appa">Appartement</option>
-                    <option value="inso">Insolite</option>
-                </select>
-                <label for="rooms" class="text-white mr-2"
-                    >Nombre de chambres:
-                </label>
-                <select name="rooms" id="rooms" class="mr-4 p-1 rounded-sm">
-                    <option value="one">1</option>
-                    <option value="two">2</option>
-                    <option value="more">3 et +</option>
-                </select>
+<div>
+    <div class="min-h-min h-40 bg-black mt-1 flex flex-row items-center justify-center rounded-lg" >
+        <form class="flex flex-row justify-between pt-10 px-10">
+            <div class="text-white flex flex-row justify-center items-start text-center space-x-4">
+                {{ form_start(form) }}
+                    {{ form_rest(form) }}
+                    <button class="text-black px-2 py-1 bg-white rounded-full">Rechercher</button>
+                {{ form_end(form) }}
             </div>
-            <div class="equiments text-white flex flex-row">
-                <label for="equipments" class="mr-4">Equipements :</label>
-                <input type="checkbox" name="piscine" id="piscine" class=""><span class="ml-4 mr-4">Piscine</span></input>
-                <input type="checkbox" name="jacuzzi" id="jacuzzi" ><span class="ml-4 mr-4">Jacuzzi</span></input>
-                <input type="checkbox" name="laveVaisselle" id="laveVaisselle" ><span class="ml-4 mr-4">Lave-vaisselle</span></input>
-                <input type="checkbox" name="homeCinema" id="homeCinema" ><span class="ml-4 mr-4">Home-Cinema</span></input>
-            </div>
-            <div class="searchButton flex flex-row-reverse pb-10">
-                <button class="text-white bg-gold-dark rounded-full py-1 px-2 justify-end" type="submit"><i class="fa-solid fa-magnifying-glass mr-4"></i>Lancer la recherche</button>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>

@@ -2,21 +2,26 @@
 
 namespace App\Controller;
 
+use App\Form\SearchBarType;
 use App\Repository\EquipementInterieurRepository;
 use App\Repository\GiteRepository;
 use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(GiteRepository $giteRepository): Response
+    public function index(Request $request, GiteRepository $giteRepository): Response
     {
         $gites = $giteRepository->findAll();
 
-        return $this->render('home/index.html.twig', ["gites" => $gites]);
+        $searchForm = $this->createForm(SearchBarType::class);
+        $searchForm->handleRequest($request);
+
+        return $this->render('home/index.html.twig', ["gites" => $gites, 'form' => $searchForm->createView()]);
     }
 
     #[Route('/gite/{id}', name: "show_gite")]
