@@ -11,7 +11,7 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,28 +20,29 @@ class SearchBarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('nomGite', TextType::class, ['label' => 'Nom du Gite:'])
-            // ->add('surface')
-            ->add('nbChambres', EntityType::class, [
-                'class' => Gite::class,
+            ->add('nbChambres', ChoiceType::class, [
                 'label' => 'Nombre de chambres:',
-                'choice_label' => 'nbChambres',
-                'multiple' => false,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('e')
-                        ->orderBy('e.nbChambres', 'ASC');
-                },
                 'attr' => [
                     'class' => 'mx-2 text-black rounded flex flex-row justify-center align-middle items-center text-center'
                 ],
                 'label_attr' => [
                     'class' => 'mb-2'
                 ],
+                'required' => false,
+                'choices' => [
+                    '1' => 1,
+                    '2' => 2,
+                    '3' => 3,
+                    '4' => 4,
+                    '5' => 5,
+                    '6' => 6,
+                    '7' => 7,
+                    '8' => 8,
+                    '9' => 9,
+                ]
             ])
-            // ->add('nbLits')
             ->add('acceptAnimaux', CheckboxType::class, [
                 'label' => 'Accepte les animaux',
-                'required' => 'false',
                 'attr' => [
                     'class' => 'mx-2 text-black rounded flex flex-row justify-center align-middle items-center text-center'
                 ],
@@ -50,8 +51,6 @@ class SearchBarType extends AbstractType
                 ],
                 'required' => false
             ])
-            // ->add('tarifAnimaux')
-            // ->add('image')
             ->add('ville', EntityType::class, [
                 'class' => Ville::class,
                 'label' => 'Ville:',
@@ -66,10 +65,9 @@ class SearchBarType extends AbstractType
                 'label_attr' => [
                     'class' => 'mb-2'
                 ],
+                'placeholder' => '',
+                'required' => false
             ])
-            // ->add('proprietaire')
-            // ->add('contact')
-            // ->add('prix')
             ->add('equipementInterieur', EntityType::class, [
                 'class' => EquipementInterieur::class,
                 'label' => 'Équipement intérieur:',
@@ -110,13 +108,14 @@ class SearchBarType extends AbstractType
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('e')
                         ->orderBy('e.nom', 'ASC');
-                }, 'attr' => [
+                },
+                'attr' => [
                     'class' => 'mx-2 text-black rounded flex flex-row justify-center align-middle items-center text-center'
                 ],
                 'label_attr' => [
                     'class' => 'mb-4'
                 ],
-                'required' => false
+                'required' => false,
             ]);
     }
 

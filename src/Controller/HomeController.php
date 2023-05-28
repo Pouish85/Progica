@@ -3,9 +3,7 @@
 namespace App\Controller;
 
 use App\Form\SearchBarType;
-use App\Repository\EquipementInterieurRepository;
 use App\Repository\GiteRepository;
-use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,10 +15,53 @@ class HomeController extends AbstractController
     public function index(Request $request, GiteRepository $giteRepository): Response
     {
         $gites = $giteRepository->findAll();
-
+        $options = [];
         $searchForm = $this->createForm(SearchBarType::class);
         $searchForm->handleRequest($request);
+        // dd($searchForm);
 
+        if ($searchForm->isSubmitted() && $searchForm->isValid()) {
+            dd($searchForm->getData());
+            $searchFormData = $searchForm->getData();
+            $nbChambres = $searchFormData->getNbChambres();
+            $acceptAnimaux = $searchFormData->isAcceptAnimaux();
+            $ville = $searchFormData->getVille();
+            $equipementInterieur = $searchFormData->getEquipementInterieur();
+            $equipementExterieur = $searchFormData->getEquipementExterieur();
+            $service = $searchFormData->getService();
+            dd($service);
+            // dump('EquipementInterieur:', $equipementInterieur, 'EquipementExterieur:', $equipementExterieur,);
+
+            if ($nbChambres !== null) {
+                $options['nbChambres'] = $nbChambres;
+                // dd($options);
+            }
+            if ($acceptAnimaux === true) {
+                $options['acceptAnimaux'] = $acceptAnimaux;
+                // dd($options);
+            }
+            if ($ville !== null) {
+                $options['ville'] = $ville;
+            }
+            if ($equipementInterieur !== null && !$equipementInterieur->isEmpty()) {
+                $options['equipementInterieur'] = $equipementInterieur;
+            }
+            if ($equipementExterieur !== null && !$equipementExterieur->isEmpty()) {
+                $options['equipementExterieur'] = $equipementExterieur;
+            }
+            if ($service !== null && !$service->isEmpty()) {
+                $options['service'] = $service;
+            }
+
+
+
+            // dd($searchFormData, $options);
+            $gites = $giteRepository->findGiteByOptions($options);
+            // dump('Gites', $gites);
+            // dd($gites);
+        }
+
+        // dd('fin de fonction');
         return $this->render('home/index.html.twig', ["gites" => $gites, 'form' => $searchForm->createView()]);
     }
 
