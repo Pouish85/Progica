@@ -4,7 +4,10 @@
             <div class="text-white flex flex-row justify-center items-start text-center space-x-4">
                 {{ form_start(form, {'attr': { 'class': 'flex flex-row justify-center items-start text-center space-x-4' }}) }}
                     {{ form_rest(form) }}
-                    <button class="text-black px-2 py-1 bg-white rounded-full">Rechercher</button>
+                    <div class="flex flex-row space-x-2 justify-end align-bottom text-end items-end h-full">
+                        <button class="text-black px-2 py-1 bg-white rounded-full">Rechercher</button>
+                        <a href="/" class="text-black px-2 py-1 bg-white rounded-full"><i class="fa-solid fa-rotate-left"></i></a>
+                    </div>
                 {{ form_end(form) }}
             </div>
         {# </form> #}

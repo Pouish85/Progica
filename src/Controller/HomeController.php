@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
 use App\Form\SearchBarType;
 use App\Repository\GiteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,12 +17,14 @@ class HomeController extends AbstractController
     {
         $gites = $giteRepository->findAll();
         $options = [];
-        $searchForm = $this->createForm(SearchBarType::class);
+        $searchData = new SearchData();
+        $searchForm = $this->createForm(SearchBarType::class, $searchData);
+        // $searchForm = $this->createForm(SearchBarType::class);
         $searchForm->handleRequest($request);
         // dd($searchForm);
 
         if ($searchForm->isSubmitted() && $searchForm->isValid()) {
-            dd($searchForm->getData());
+            // dd($searchForm->getData());
             $searchFormData = $searchForm->getData();
             $nbChambres = $searchFormData->getNbChambres();
             $acceptAnimaux = $searchFormData->isAcceptAnimaux();
@@ -29,7 +32,7 @@ class HomeController extends AbstractController
             $equipementInterieur = $searchFormData->getEquipementInterieur();
             $equipementExterieur = $searchFormData->getEquipementExterieur();
             $service = $searchFormData->getService();
-            dd($service);
+            // dd($service);
             // dump('EquipementInterieur:', $equipementInterieur, 'EquipementExterieur:', $equipementExterieur,);
 
             if ($nbChambres !== null) {
@@ -55,8 +58,10 @@ class HomeController extends AbstractController
 
 
 
+            // dd($equipementExterieur);
             // dd($searchFormData, $options);
             $gites = $giteRepository->findGiteByOptions($options);
+            // $gites = $giteRepository->testGite($options);
             // dump('Gites', $gites);
             // dd($gites);
         }

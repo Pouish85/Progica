@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\EquipementInterieur;
 use App\Entity\Gite;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Query\QueryBuilder;
+use Doctrine\ORM\Query\Expr;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -52,6 +54,7 @@ class GiteRepository extends ServiceEntityRepository
     public function findGiteByOptions(array $options)
     {
         $queryBuilder = $this->createQueryBuilder('g');
+
         // dd($options);
         if (isset($options['nbChambres'])) {
             $queryBuilder->andWhere('g.nbChambres = :nbChambres')
@@ -67,64 +70,42 @@ class GiteRepository extends ServiceEntityRepository
         }
         if (isset($options['equipementInterieur'])) {
             $equipementsI = $options['equipementInterieur'];
-            // dd($equipementsI);
-            $queryBuilder->join('g.equipementInterieur', 'ei');
-            foreach ($equipementsI as $equipementI) {
-                $queryBuilder->andWhere('ei.nom = :nomEquipementI')
-                    ->setParameter('nomEquipementI', $equipementI->getNom());
+
+            foreach ($equipementsI as $index => $equipementI) {
+                $idEquipementI = [];
+                $idEquipementI['adresse'] = 'ei' . $index;
+                $idEquipementI['id'] = $equipementI->getId();
+
+                $queryBuilder->join('g.equipementInterieur', $idEquipementI['adresse'])
+                    ->andWhere("{$idEquipementI['adresse']}.id = {$idEquipementI['id']}");
             }
         }
         if (isset($options['equipementExterieur'])) {
             $equipementsE = $options['equipementExterieur'];
-            // dd($equipementsE);
-            $queryBuilder->join('g.equipementExterieur', 'ee');
-            $equipementEList = [];
 
             foreach ($equipementsE as $index => $equipementE) {
-                $nomEquipementE = [];
-                $nomEquipementE['index'] = 'EquipementE_' . $index;
-                $nomEquipementE['nom'] = $equipementE->getnom();
+                $idEquipementE = [];
+                $idEquipementE['adresse'] = 'ee' . $index;
+                $idEquipementE['id'] = $equipementE->getId();
 
-                $queryBuilder->andWhere("ee.nom = :{$nomEquipementE['index']}")
-                    ->setParameter($nomEquipementE['index'], $nomEquipementE['nom']);
-
-                $equipementEList[] = $nomEquipementE;
-                // $nameEquipE = 'equipementExterieur_' . $index;
-                // dump($index, $equipementE, $nomEquipementE, 'EquipementEList', $equipementEList);
+                $queryBuilder->join('g.equipementExterieur', $idEquipementE['adresse'])
+                    ->andWhere("{$idEquipementE['adresse']}.id = {$idEquipementE['id']}");
             }
-            // $queryBuilder->andWhere('ee.nom = :nomEquipementE')
-            //     ->setParameter('nomEquipementE', $equipementEList['nom']);
         }
-        if (isset($options['service']) && $options['service'] !== null) {
-            $queryBuilder->join('g.service', 's');
-            foreach ($options['service'] as $index => $service) {
-                $nomService = 'service_' . $index;
-                $queryBuilder->andWhere('s.nom = :' . $service)
-                    ->setParameter($nomService, $service->getNom());
+        if (isset($options['service'])) {
+            $services = $options['service'];
+
+            foreach ($services as $index => $service) {
+                $idService = [];
+                $idService['adresse'] = 's' . $index;
+                $idService['id'] = $service->getId();
+
+                $queryBuilder->join('g.service', $idService['adresse'])
+                    ->andWhere("{$idService['adresse']}.id = {$idService['id']}");
             }
         };
-
-
-        // dd($queryBuilder);
         return $queryBuilder->getQuery()->getResult();
     }
-
-    // public function findGiteByOptions(array $options)
-    // {
-    //     $queryBuilder = $this->createQueryBuilder('g');
-
-    //     foreach ($options as $key => $value) {
-    //         if ($key === 'equipementInterieur') {
-    //             $queryBuilder->innerJoin('g.equipementInterieur', 'ei');
-    //         }
-    //         if ($value !== null) {
-    //             $queryBuilder->andWhere("g.$key = :$key")
-    //                 ->setParameter($key, $value);
-    //         }
-    //     }
-
-    //     return $queryBuilder->getQuery()->getResult();
-    // }
 
     public function findAllInsideEquipmentsForAGiteByGiteId(int $id)
     {

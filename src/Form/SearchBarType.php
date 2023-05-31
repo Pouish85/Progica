@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Data\SearchData;
 use App\Entity\Gite;
 use App\Entity\EquipementInterieur;
 use App\Entity\EquipementExterieur;
@@ -122,7 +123,7 @@ class SearchBarType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Gite::class,
+            'data_class' => SearchData::class,
         ]);
     }
 }
