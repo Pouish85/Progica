@@ -55,7 +55,6 @@ class GiteRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this->createQueryBuilder('g');
 
-        // dd($options);
         if (isset($options['nbChambres'])) {
             $queryBuilder->andWhere('g.nbChambres = :nbChambres')
                 ->setParameter('nbChambres', $options['nbChambres']);

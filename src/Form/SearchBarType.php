@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Data\SearchData;
-use App\Entity\Gite;
 use App\Entity\EquipementInterieur;
 use App\Entity\EquipementExterieur;
 use App\Entity\Service;
@@ -13,6 +12,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -23,11 +23,11 @@ class SearchBarType extends AbstractType
         $builder
             ->add('nbChambres', ChoiceType::class, [
                 'label' => 'Nombre de chambres:',
-                'attr' => [
-                    'class' => 'mx-2 text-black rounded flex flex-row justify-center align-middle items-center text-center'
-                ],
                 'label_attr' => [
-                    'class' => 'mb-2'
+                    'class' => 'flex flex-row justify-start '
+                ],
+                'attr' => [
+                    'class' => 'flex flex-col align-middle justify-center text-center items-center'
                 ],
                 'required' => false,
                 'choices' => [
@@ -44,11 +44,8 @@ class SearchBarType extends AbstractType
             ])
             ->add('acceptAnimaux', CheckboxType::class, [
                 'label' => 'Accepte les animaux',
-                'attr' => [
-                    'class' => 'mx-2 text-black rounded flex flex-row justify-center align-middle items-center text-center'
-                ],
                 'label_attr' => [
-                    'class' => 'mb-2'
+                    'class' => 'flex flex-row justify-start rounded'
                 ],
                 'required' => false
             ])
@@ -60,11 +57,9 @@ class SearchBarType extends AbstractType
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('e')
                         ->orderBy('e.nom', 'ASC');
-                }, 'attr' => [
-                    'class' => 'mx-2 text-black rounded flex flex-row justify-center align-middle items-center text-center'
-                ],
+                },
                 'label_attr' => [
-                    'class' => 'mb-2'
+                    'class' => 'flex flex-row justify-start'
                 ],
                 'placeholder' => '',
                 'required' => false
@@ -74,30 +69,29 @@ class SearchBarType extends AbstractType
                 'label' => 'Équipement intérieur:',
                 'choice_label' => 'nom',
                 'multiple' => true,
+                'expanded' => true,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('e')
                         ->orderBy('e.nom', 'ASC');
-                }, 'attr' => [
-                    'class' => 'mx-2 text-black rounded flex flex-row justify-center align-middle items-center text-center'
-                ],
+                },
                 'label_attr' => [
-                    'class' => 'mb-2'
+                    'class' => 'flex flex-row justify-start'
                 ],
-                'required' => false
+                'required' => false,
+
             ])
             ->add('equipementExterieur', EntityType::class, [
                 'class' => EquipementExterieur::class,
                 'label' => 'Équipement extérieur:',
                 'choice_label' => 'nom',
                 'multiple' => true,
+                'expanded' => true,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('e')
                         ->orderBy('e.nom', 'ASC');
-                }, 'attr' => [
-                    'class' => 'mx-2 text-black rounded flex flex-row justify-center align-middle items-center text-center'
-                ],
+                },
                 'label_attr' => [
-                    'class' => 'mb-2'
+                    'class' => 'flex flex-row justify-start'
                 ],
                 'required' => false
             ])
@@ -106,15 +100,13 @@ class SearchBarType extends AbstractType
                 'label' => 'Service:',
                 'choice_label' => 'nom',
                 'multiple' => true,
+                'expanded' => true,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('e')
                         ->orderBy('e.nom', 'ASC');
                 },
-                'attr' => [
-                    'class' => 'mx-2 text-black rounded flex flex-row justify-center align-middle items-center text-center'
-                ],
                 'label_attr' => [
-                    'class' => 'mb-4'
+                    'class' => 'flex flex-row justify-start'
                 ],
                 'required' => false,
             ]);

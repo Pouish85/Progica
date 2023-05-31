@@ -19,12 +19,9 @@ class HomeController extends AbstractController
         $options = [];
         $searchData = new SearchData();
         $searchForm = $this->createForm(SearchBarType::class, $searchData);
-        // $searchForm = $this->createForm(SearchBarType::class);
         $searchForm->handleRequest($request);
-        // dd($searchForm);
 
         if ($searchForm->isSubmitted() && $searchForm->isValid()) {
-            // dd($searchForm->getData());
             $searchFormData = $searchForm->getData();
             $nbChambres = $searchFormData->getNbChambres();
             $acceptAnimaux = $searchFormData->isAcceptAnimaux();
@@ -32,16 +29,12 @@ class HomeController extends AbstractController
             $equipementInterieur = $searchFormData->getEquipementInterieur();
             $equipementExterieur = $searchFormData->getEquipementExterieur();
             $service = $searchFormData->getService();
-            // dd($service);
-            // dump('EquipementInterieur:', $equipementInterieur, 'EquipementExterieur:', $equipementExterieur,);
 
             if ($nbChambres !== null) {
                 $options['nbChambres'] = $nbChambres;
-                // dd($options);
             }
             if ($acceptAnimaux === true) {
                 $options['acceptAnimaux'] = $acceptAnimaux;
-                // dd($options);
             }
             if ($ville !== null) {
                 $options['ville'] = $ville;
@@ -56,17 +49,10 @@ class HomeController extends AbstractController
                 $options['service'] = $service;
             }
 
-
-
-            // dd($equipementExterieur);
-            // dd($searchFormData, $options);
             $gites = $giteRepository->findGiteByOptions($options);
-            // $gites = $giteRepository->testGite($options);
-            // dump('Gites', $gites);
-            // dd($gites);
         }
 
-        // dd('fin de fonction');
+        // dd($searchFormData, $options);
         return $this->render('home/index.html.twig', ["gites" => $gites, 'form' => $searchForm->createView()]);
     }
 

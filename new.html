@@ -1,0 +1,332 @@
+<div class="flex flex-col">
+    <div
+        class="h-40 bg-black mt-1 flex flex-row items-center justify-center rounded-lg"
+    >
+        <form name="search_bar" method="post">
+            <div
+                class="text-white flex flex-row justify-center items-start text-center space-x-4"
+            >
+                <div
+                    class="flex flex-col align-middle justify-center text-center items-center"
+                >
+                    <p class="mb-8">Nombre de chambres:</p>
+                    <select
+                        id="search_bar_nbChambres"
+                        name="search_bar[nbChambres]"
+                        class="text-black rounded text-[16px] w-[50px]"
+                    >
+                        <option value=""></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select>
+                </div>
+                <div
+                    class="flex flex-col align-middle justify-center text-center items-center"
+                >
+                    <p class="mb-8">Animaux acceptés:</p>
+                    <input
+                        type="checkbox"
+                        id="search_bar_acceptAnimaux"
+                        name="search_bar[acceptAnimaux]"
+                        class="text-black rounded text-[16px] w-[50px]"
+                        value="1"
+                    />
+                </div>
+                <div
+                    class="flex flex-col align-middle justify-center text-center items-center"
+                >
+                    <p class="mb-8">Ville:</p>
+                    <select
+                        id="search_bar_ville"
+                        name="search_bar[ville]"
+                        class="text-black rounded text-[16px] w-[120px]"
+                    >
+                        <option value=""></option>
+                        <option value="20">Amiens</option>
+                        <option value="16">Angers</option>
+                        <option value="3">Annecy</option>
+                        <option value="8">Bordeaux</option>
+                        <option value="13">Brest</option>
+                        <option value="5">Carcassonne</option>
+                        <option value="4">Dijon</option>
+                        <option value="12">Lille</option>
+                        <option value="17">Limoges</option>
+                        <option value="6">Lyon</option>
+                        <option value="10">Marseille</option>
+                        <option value="2">Montpellier</option>
+                        <option value="1">Nantes</option>
+                        <option value="11">Nice</option>
+                        <option value="14">Nîmes</option>
+                        <option value="15">Perpignan</option>
+                        <option value="19">Reims</option>
+                        <option value="7">Rennes</option>
+                        <option value="18">Strasbourg</option>
+                        <option value="9">Toulouse</option>
+                    </select>
+                </div>
+                <div
+                    class="flex flex-col align-middle justify-center text-center items-center"
+                >
+                    <p class="mb-2">Equipement Intérieur:</p>
+                    <div class="choices-container">
+                        <form name="equipementInterieur" method="post">
+                            <div id="search_bar_equipementInterieur">
+                                <input
+                                    type="checkbox"
+                                    id="search_bar_equipementInterieur_8"
+                                    name="search_bar[equipementInterieur][]"
+                                    value="8"
+                                /><label for="search_bar_equipementInterieur_8"
+                                    >Barbecue</label
+                                ><input
+                                    type="checkbox"
+                                    id="search_bar_equipementInterieur_7"
+                                    name="search_bar[equipementInterieur][]"
+                                    value="7"
+                                /><label for="search_bar_equipementInterieur_7"
+                                    >Cheminée</label
+                                ><input
+                                    type="checkbox"
+                                    id="search_bar_equipementInterieur_1"
+                                    name="search_bar[equipementInterieur][]"
+                                    value="1"
+                                /><label for="search_bar_equipementInterieur_1"
+                                    >Cuisine équipée</label
+                                ><input
+                                    type="checkbox"
+                                    id="search_bar_equipementInterieur_10"
+                                    name="search_bar[equipementInterieur][]"
+                                    value="10"
+                                /><label for="search_bar_equipementInterieur_10"
+                                    >Jeux de société</label
+                                ><input
+                                    type="checkbox"
+                                    id="search_bar_equipementInterieur_5"
+                                    name="search_bar[equipementInterieur][]"
+                                    value="5"
+                                /><label for="search_bar_equipementInterieur_5"
+                                    >Lave-linge</label
+                                ><input
+                                    type="checkbox"
+                                    id="search_bar_equipementInterieur_9"
+                                    name="search_bar[equipementInterieur][]"
+                                    value="9"
+                                /><label for="search_bar_equipementInterieur_9"
+                                    >Lecteur DVD</label
+                                ><input
+                                    type="checkbox"
+                                    id="search_bar_equipementInterieur_2"
+                                    name="search_bar[equipementInterieur][]"
+                                    value="2"
+                                /><label for="search_bar_equipementInterieur_2"
+                                    >Salle de bain</label
+                                ><input
+                                    type="checkbox"
+                                    id="search_bar_equipementInterieur_6"
+                                    name="search_bar[equipementInterieur][]"
+                                    value="6"
+                                /><label for="search_bar_equipementInterieur_6"
+                                    >Sèche-linge</label
+                                ><input
+                                    type="checkbox"
+                                    id="search_bar_equipementInterieur_3"
+                                    name="search_bar[equipementInterieur][]"
+                                    value="3"
+                                /><label for="search_bar_equipementInterieur_3"
+                                    >TV écran plat</label
+                                ><input
+                                    type="checkbox"
+                                    id="search_bar_equipementInterieur_4"
+                                    name="search_bar[equipementInterieur][]"
+                                    value="4"
+                                /><label for="search_bar_equipementInterieur_4"
+                                    >WiFi</label
+                                >
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col align-middle justify-center text-center items-center"
+                >
+                    <p class="mb-2">Equipement Extérieur:</p>
+                    <div
+                        id="search_bar_equipementExterieur"
+                        class="choices-container"
+                    >
+                        <input
+                            type="checkbox"
+                            id="search_bar_equipementExterieur_8"
+                            name="search_bar[equipementExterieur][]"
+                            value="8"
+                            checked="checked"
+                        /><label for="search_bar_equipementExterieur_8"
+                            >Balcon</label
+                        ><input
+                            type="checkbox"
+                            id="search_bar_equipementExterieur_5"
+                            name="search_bar[equipementExterieur][]"
+                            value="5"
+                        /><label for="search_bar_equipementExterieur_5"
+                            >Barbecue</label
+                        ><input
+                            type="checkbox"
+                            id="search_bar_equipementExterieur_4"
+                            name="search_bar[equipementExterieur][]"
+                            value="4"
+                        /><label for="search_bar_equipementExterieur_4"
+                            >Cour</label
+                        ><input
+                            type="checkbox"
+                            id="search_bar_equipementExterieur_10"
+                            name="search_bar[equipementExterieur][]"
+                            value="10"
+                        /><label for="search_bar_equipementExterieur_10"
+                            >Hamacs</label
+                        ><input
+                            type="checkbox"
+                            id="search_bar_equipementExterieur_3"
+                            name="search_bar[equipementExterieur][]"
+                            value="3"
+                        /><label for="search_bar_equipementExterieur_3"
+                            >Jardin</label
+                        ><input
+                            type="checkbox"
+                            id="search_bar_equipementExterieur_1"
+                            name="search_bar[equipementExterieur][]"
+                            value="1"
+                        /><label for="search_bar_equipementExterieur_1"
+                            >Piscine</label
+                        ><input
+                            type="checkbox"
+                            id="search_bar_equipementExterieur_9"
+                            name="search_bar[equipementExterieur][]"
+                            value="9"
+                        /><label for="search_bar_equipementExterieur_9"
+                            >Salon de jardin</label
+                        ><input
+                            type="checkbox"
+                            id="search_bar_equipementExterieur_6"
+                            name="search_bar[equipementExterieur][]"
+                            value="6"
+                        /><label for="search_bar_equipementExterieur_6"
+                            >Table de ping-pong</label
+                        ><input
+                            type="checkbox"
+                            id="search_bar_equipementExterieur_7"
+                            name="search_bar[equipementExterieur][]"
+                            value="7"
+                            checked="checked"
+                        /><label for="search_bar_equipementExterieur_7"
+                            >Terrain de pétanque</label
+                        ><input
+                            type="checkbox"
+                            id="search_bar_equipementExterieur_2"
+                            name="search_bar[equipementExterieur][]"
+                            value="2"
+                        /><label for="search_bar_equipementExterieur_2"
+                            >Terrasse</label
+                        >
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col align-middle justify-center text-center items-center"
+                >
+                    <p class="mb-2">Service:</p>
+                    <div id="search_bar_service" class="choices-container">
+                        <input
+                            type="checkbox"
+                            id="search_bar_service_10"
+                            name="search_bar[service][]"
+                            value="10"
+                        /><label for="search_bar_service_10"
+                            >Cours de cuisine</label
+                        ><input
+                            type="checkbox"
+                            id="search_bar_service_4"
+                            name="search_bar[service][]"
+                            value="4"
+                        /><label for="search_bar_service_4">Demi-pension</label
+                        ><input
+                            type="checkbox"
+                            id="search_bar_service_1"
+                            name="search_bar[service][]"
+                            value="1"
+                        /><label for="search_bar_service_1"
+                            >Linge de maison</label
+                        ><input
+                            type="checkbox"
+                            id="search_bar_service_7"
+                            name="search_bar[service][]"
+                            value="7"
+                        /><label for="search_bar_service_7"
+                            >Location de vélos</label
+                        ><input
+                            type="checkbox"
+                            id="search_bar_service_8"
+                            name="search_bar[service][]"
+                            value="8"
+                        /><label for="search_bar_service_8"
+                            >Location de voitures</label
+                        ><input
+                            type="checkbox"
+                            id="search_bar_service_9"
+                            name="search_bar[service][]"
+                            value="9"
+                        /><label for="search_bar_service_9">Massages</label
+                        ><input
+                            type="checkbox"
+                            id="search_bar_service_2"
+                            name="search_bar[service][]"
+                            value="2"
+                        /><label for="search_bar_service_2"
+                            >Ménage de fin de séjour</label
+                        ><input
+                            type="checkbox"
+                            id="search_bar_service_5"
+                            name="search_bar[service][]"
+                            value="5"
+                        /><label for="search_bar_service_5"
+                            >Pension complète</label
+                        ><input
+                            type="checkbox"
+                            id="search_bar_service_3"
+                            name="search_bar[service][]"
+                            value="3"
+                        /><label for="search_bar_service_3"
+                            >Petit-déjeuner</label
+                        ><input
+                            type="checkbox"
+                            id="search_bar_service_6"
+                            name="search_bar[service][]"
+                            value="6"
+                        /><label for="search_bar_service_6"
+                            >Service de navette</label
+                        >
+                    </div>
+                </div>
+                <div class="flex flex-col justify-end h-full pb-3 ml-8">
+                    <div class="flex flex-row space-x-2">
+                        <button
+                            class="text-black px-2 py-1 bg-white rounded-full"
+                        >
+                            Rechercher
+                        </button>
+                        <a
+                            href="/"
+                            class="text-black px-2 py-1 bg-white rounded-full"
+                            ><i class="fa-solid fa-rotate-left"></i
+                        ></a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

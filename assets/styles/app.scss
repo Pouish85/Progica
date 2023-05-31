@@ -1,3 +1,24 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+.choices-container {
+    color: black;
+    border-radius: 5px;
+    font-size: 14px;
+    max-height: 6rem;
+    overflow: auto;
+    // overflow-x: hidden;
+    width: 220px;
+    padding: 0.2rem 0;
+    padding-left: 1rem;
+    display: grid;
+    grid-template-columns: minmax(0, max-content) minmax(50%, 1fr);
+    background-color: white;
+}
+
+.roundedCheckBox {
+    height: 20px;
+    width: 20px;
+    clip-path: circle(46% at 50% 50%);
+}

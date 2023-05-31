@@ -1,15 +1,37 @@
 <div>
-    <div class="min-h-min h-40 bg-black mt-1 flex flex-row items-center justify-center rounded-lg" >
-        {# <form class="flex flex-row justify-between pt-10 px-10"> #}
-            <div class="text-white flex flex-row justify-center items-start text-center space-x-4">
-                {{ form_start(form, {'attr': { 'class': 'flex flex-row justify-center items-start text-center space-x-4' }}) }}
-                    {{ form_rest(form) }}
-                    <div class="flex flex-row space-x-2 justify-end align-bottom text-end items-end h-full">
-                        <button class="text-black px-2 py-1 bg-white rounded-full">Rechercher</button>
-                        <a href="/" class="text-black px-2 py-1 bg-white rounded-full"><i class="fa-solid fa-rotate-left"></i></a>
-                    </div>
-                {{ form_end(form) }}
+    <div class="h-40 bg-black mt-1 flex flex-row items-center justify-center rounded-lg">
+        {{ form_start(form) }}
+        <div class="flex flex-row justify-center items-start text-center space-x-4">
+            <div class="flex flex-col align-middle justify-center text-center items-center mr-4" >
+                <p class="text-white mb-8">Nombre de chambres:</p>
+                {{ form_widget(form.nbChambres, {'attr': { 'class': 'text-black rounded text-[16px] w-[50px]'}}) }}
             </div>
-        {# </form> #}
+            <div class="flex flex-col align-middle justify-center text-center items-center mr-4" >
+                <p class="text-white mb-8">Animaux acceptés:</p>
+                {{ form_widget(form.acceptAnimaux, {'attr': { 'class': 'text-black rounded text-[16px] w-[50px] roundedCheckBox'}}) }}
+            </div>
+            <div class="flex flex-col align-middle justify-center text-center items-center mr-4" >
+                <p class="text-white mb-8">Ville:</p>
+                {{ form_widget(form.ville, {'attr': { 'class': 'text-black rounded text-[16px] w-[120px]'}}) }}
+            </div>
+            <div class="flex flex-col align-middle justify-center text-center items-center ml-4" >
+                <p class="text-white mb-2">Equipement Intérieur:</p>
+                {{ form(form.equipementInterieur, {'attr': { 'class': 'choices-container'}}) }}
+            </div>
+            <div class="flex flex-col align-middle justify-center text-center items-center ml-4" >
+                <p class="text-white mb-2">Equipement Extérieur:</p>
+                {{ form_widget(form.equipementExterieur, {'attr': { 'class': 'choices-container'}}) }}
+            </div>
+            <div class="flex flex-col align-middle justify-center text-center items-center ml-4" >
+                <p class="text-white mb-2">Service:</p>
+                {{ form_widget(form.service, {'attr': { 'class': 'choices-container'}}) }}
+            </div>
+            <div class="flex flex-col justify-end h-32 ml-8">
+                <div class="flex flex-row space-x-2">
+                    <button class="text-black px-2 py-1 bg-white rounded-full">Rechercher</button>
+                    <a href="/" class="text-black px-2 py-1 bg-white rounded-full" ><i class="fa-solid fa-rotate-left"></i ></a>
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
     </div>
-</div>
