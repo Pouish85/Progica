@@ -3,7 +3,7 @@
 {% block title %}Gite | {{ gite.nomGite}}{% endblock %}
 
 {% block body %}
-    <div class="flex h-[calc(100vh-96px-48px-35px)] overflow-scroll">
+    <div class="flex h-[calc(100vh-96px-48px)]">
         <div class="flex h-full items-center justify-center w-[1500px]">
             <div class="bg-gold-light-opacity flex flex-col border mt-2 rounded-xl p-5">
                 <div class="flex flex-col justify-center">
@@ -16,13 +16,20 @@
                                 <li><i class="fa-solid fa-ruler-combined"></i>: </li>
                                 <li><i class="fa-solid fa-user">: </i></li>
                                 <li><i class="fa-solid fa-children">: </i></li>
-                                <li class="mt-[7rem] text-xl"><i class="fa-solid fa-coins"></i></li>
+                                {% if gite.acceptAnimaux %}
+                                <li><i class="fa-solid fa-dog" ></i></li>
+                                {% endif %}
+                                    <li class="mt-[7rem] text-xl"><i class="fa-solid fa-coins"></i></li>
                             </div>
                             <div class="flex list-none flex-col ml-10">
                                 <li>{{ gite.nbChambres}}</li>
                                 <li>{{ gite.surface}} m²</li>
                                 <li>{{ gite.nbChambres * 2 }}</li>
                                 <li>{{ gite.nbLits - gite.nbChambres }}</li>
+                                {% if gite.acceptAnimaux %}
+                                    <li>{{ gite.tarifAnimaux }}€</li>
+                                {% endif %}
+                                
                                 <li class="mt-[7rem] text-l">{{ gite.prix.tarif }} € /nuit</i></li>
                             </div>
                         </div>
@@ -74,11 +81,11 @@
                 <div class="date">
                     <div class="entree m-4">
                         <h2>Date d'arrivée</h2>
-                        <input type="date" name="arrivee" id="arrivee" class="rounded">
+                        <input type="date" name="arrivee" id="arrivee" class="rounded pl-2">
                     </div>
                     <div class="sortie m-4">
                         <h2>Date d'arrivée</h2>
-                        <input type="date" name="depart" id="depart" class="rounded">
+                        <input type="date" name="depart" id="depart" class="rounded pl-2">
                     </div>
                 </div>
                 <button class=" bg-dark-color rounded-full mt-5 text-gold-light">Reserver</button>

@@ -6,7 +6,7 @@
     <div class="flex flex-col">
     {{ include("./partials/_searchbar.html.twig") }}
     <div class="flex h-[calc(100vh-96px-48px-160px)] overflow-auto">
-        <div class="grid grid-cols-4 flex-1 max-h-[350px]">
+        <div class="md:grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 sm:align-center flex-1 max-h-[350px]">
             {% for gite in gites %}
             <a
                 href="{{ path('show_gite', {id: gite.id}) }}"
@@ -52,15 +52,13 @@
                             title="Chiens acceptés, surplus par reservation {{ gite.tarifAnimaux }} €"
                         ></i>
                         {% endif %}
-                        <i
+                        {% if gite.hasPool() %}
+                            <i
                             class="fa-solid fa-water-ladder"
                             title="Piscine disponible"
                         ></i>
-                        <i
-                            class="fa-solid fa-mountain"
-                            title="A la campagne"
-                        ></i>
-                        <i class="fa-solid fa-city" title="En ville"></i>
+                        {% endif %}
+                        
                     </div>
                 </div>
             </a>

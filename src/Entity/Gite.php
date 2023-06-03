@@ -122,6 +122,20 @@ class Gite
         return $this;
     }
 
+    public function hasPool(): bool
+    {
+        $equipementsExterieurs = $this->getEquipementExterieur();
+
+        foreach ($equipementsExterieurs as $equipementExterieur) {
+            if ($equipementExterieur->getNom() === 'Piscine') {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
     public function isAcceptAnimaux(): ?bool
     {
         return $this->acceptAnimaux;
