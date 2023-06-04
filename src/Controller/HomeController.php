@@ -21,6 +21,8 @@ class HomeController extends AbstractController
         $options = [];
         $searchData = new SearchData();
         $searchForm = $this->createForm(SearchBarType::class, $searchData);
+        // $searchForm->remove('extendToDepartement');
+        // $searchForm->remove('extendToRegion');
         $searchForm->handleRequest($request);
 
         if ($searchForm->isSubmitted() && $searchForm->isValid()) {
@@ -28,10 +30,13 @@ class HomeController extends AbstractController
             $nbChambres = $searchFormData->getNbChambres();
             $acceptAnimaux = $searchFormData->isAcceptAnimaux();
             $ville = $searchFormData->getVille();
+            $extendToDepartement = $searchFormData->isExtendToDepartement();
+            $extendToRegion = $searchFormData->isExtendToRegion();
             $equipementInterieur = $searchFormData->getEquipementInterieur();
             $equipementExterieur = $searchFormData->getEquipementExterieur();
             $service = $searchFormData->getService();
 
+            // dd($searchFormData);
             if ($nbChambres !== null) {
                 $options['nbChambres'] = $nbChambres;
             }
@@ -40,6 +45,12 @@ class HomeController extends AbstractController
             }
             if ($ville !== null) {
                 $options['ville'] = $ville;
+            }
+            if ($extendToDepartement === true) {
+                $options['extendToDepartement'] = $extendToDepartement;
+            }
+            if ($extendToRegion === true) {
+                $options['extendToRegion'] = $extendToRegion;
             }
             if ($equipementInterieur !== null && !$equipementInterieur->isEmpty()) {
                 $options['equipementInterieur'] = $equipementInterieur;
@@ -53,8 +64,8 @@ class HomeController extends AbstractController
 
             $gites = $giteRepository->findGiteByOptions($options);
         }
+        // dd($options);
 
-        // dd($searchFormData, $options);
         return $this->render('home/index.html.twig', ["gites" => $gites, 'form' => $searchForm->createView()]);
     }
 

@@ -64,8 +64,26 @@ class GiteRepository extends ServiceEntityRepository
                 ->setParameter('acceptAnimaux', $options['acceptAnimaux']);
         }
         if (isset($options['ville']) && $options['ville'] !== null) {
-            $queryBuilder->andWhere('g.ville = :ville')
-                ->setParameter('ville', $options['ville']);
+
+            if (isset($options['extendToDepartement']) && $options['extendToDepartement'] === true) {
+
+                $queryBuilder->join('g.ville', 'v')
+                    ->join('v.departement', 'd')
+                    ->andWhere('d.id = :departementIdDeVille')
+                    ->setParameter('departementIdDeVille', $options['ville']->getDepartement()->getId());
+                // dd($options['ville']->getDepartement()->getId());
+            } else if ((isset($options['extendToRegion']) && $options['extendToRegion'] === true)) {
+                $queryBuilder->join('g.ville', 'v')
+                    ->join('v.departement', 'd')
+                    ->join('d.region', 'r')
+                    ->andWhere('r.id = :regionIdDeDepartement')
+                    ->setParameter('regionIdDeDepartement', $options['ville']->getDepartement()->getRegion()->getId());
+            } else {
+
+
+                $queryBuilder->andWhere('g.ville = :ville')
+                    ->setParameter('ville', $options['ville']);
+            }
         }
         if (isset($options['equipementInterieur'])) {
             $equipementsI = $options['equipementInterieur'];

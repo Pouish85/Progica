@@ -3,6 +3,7 @@
 namespace App\Data;
 
 use App\Entity\Ville;
+use App\Entity\Departement;
 use Doctrine\Common\Collections\ArrayCollection;
 
 
@@ -11,9 +12,13 @@ class SearchData
     private $nbChambres;
     private $acceptAnimaux;
     private $ville;
+    private $departement;
+    private $region;
     private $equipementInterieur;
     private $equipementExterieur;
     private $service;
+    private $extendToDepartement;
+    private ?bool $extendToRegion = null;
 
     public function getNbChambres(): ?int
     {
@@ -78,6 +83,57 @@ class SearchData
     public function setService(?ArrayCollection $service): self
     {
         $this->service = $service;
+        return $this;
+    }
+
+    public function getDepartement(): ?Departement
+    {
+        return $this->departement;
+    }
+
+    public function setDepartement(?Departement $departement): self
+    {
+        $this->departement = $departement;
+        return $this;
+    }
+    /**
+     * Get the value of region
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * Set the value of region
+     */
+    public function setRegion($region): self
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    public function isExtendToDepartement(): ?bool
+    {
+        return $this->extendToDepartement;
+    }
+
+    public function setExtendToDepartement(?bool $extendToDepartement): self
+    {
+        $this->extendToDepartement = $extendToDepartement;
+        return $this;
+    }
+
+    public function isExtendToRegion(): ?bool
+    {
+        return $this->extendToRegion;
+    }
+
+    public function setExtendToRegion(?bool $extendToRegion): self
+    {
+        $this->extendToRegion = $extendToRegion;
+
         return $this;
     }
 }

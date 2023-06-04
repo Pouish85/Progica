@@ -10,6 +10,7 @@ use App\Entity\Ville;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -63,6 +64,22 @@ class SearchBarType extends AbstractType
                 ],
                 'placeholder' => '',
                 'required' => false
+            ])
+            ->add('extendToDepartement', CheckboxType::class, [
+                'required' => false,
+                'attr' => [
+                    'class' => 'invisible'
+                ],
+                'label' => false
+
+            ])
+            ->add('extendToRegion', CheckboxType::class, [
+                'required' => false,
+                'attr' => [
+                    'class' => 'invisible'
+                ],
+                'label' => false
+
             ])
             ->add('equipementInterieur', EntityType::class, [
                 'class' => EquipementInterieur::class,
