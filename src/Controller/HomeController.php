@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Data\SearchData;
+use App\Form\BookingType;
 use App\Form\SearchBarType;
 use App\Repository\GiteRepository;
+use App\Repository\PrixRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -57,7 +59,7 @@ class HomeController extends AbstractController
     }
 
     #[Route('/gite/{id}', name: "show_gite")]
-    public function showGite(int $id, GiteRepository $giteRepository): Response
+    public function showGite(int $id, Request $request, GiteRepository $giteRepository, PrixRepository $prixRepository): Response
     {
         $gite = $giteRepository->findGiteById($id);
 
@@ -82,7 +84,26 @@ class HomeController extends AbstractController
             $servicesGite = ["0" => ['nom' => "Pas de services proposés"]];
         }
 
+        $bookingForm = $this->createForm(BookingType::class);
+        $bookingForm->handleRequest($request);
+        // dd($gite->getId());
+        $tarif = "{$prixRepository->findPriceForAGiteId($gite->getId())->getTarif()} € /nuit";
+        $style = "";
+        // dd($tarif->getTarif());
+        if ($bookingForm->isSubmitted() && $bookingForm->isValid()) {
+            $bookingFormData = $bookingForm->getData();
+            $dateDebut = $bookingFormData->getDebut();
 
-        return $this->render('home/show_gite.html.twig', ["gite" => $gite, "equipementsInt" => $equipementsInterieurs, "equipementsExt" => $equipementsExterieurs, "services" => $servicesGite]);
+            $tarif = $prixRepository->findPriceByDate($dateDebut);
+            if ($tarif === null) {
+                $tarif = "Pas de tarif enregistré pour cette date";
+                $style = "text-danger-color font-bold text-center";
+            } else {
+                $tarif = "{$tarif->getTarif()} € /nuit";
+            }
+        }
+        // dd($tarif);
+
+        return $this->render('home/show_gite.html.twig', ["gite" => $gite, "equipementsInt" => $equipementsInterieurs, "equipementsExt" => $equipementsExterieurs, "services" => $servicesGite, 'form' => $bookingForm->createView(), 'tarif' => $tarif, 'style' => $style]);
     }
 }

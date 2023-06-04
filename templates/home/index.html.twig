@@ -23,42 +23,75 @@
                 />
                 <div class="info mt-2">
                     <div class="flex flex-col">
-                        <div class="flex items-center">
+                    {# <div class="flex flex-col"> #}
+                        {# <div class="flex items-center">
                             <div>
-                                <i class="fa-solid fa-coins"></i>
+                                <i class="fa-solid fa-bed"></i>
                             </div>
                             <div class="flex-1">
-                                <h2>{{ gite.prix.tarif }} € /nuit</h2>
+                                <h2>{{ gite.nbChambres}}</h2>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div>
+                                <i class="fa-solid fa-ruler-combined"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h2>{{ gite.surface}} m²</h2>
+                            </div>
+                        </div> #}
+                        <div class="flex flex-row justify-center space-x-4">
+                            <div class="flex flex-row items-center space-x-4">
+                                <div class="flex flex-row items-center space-x-2" title="{{ gite.nbChambres }} {{ gite.nbChambres > 1 ? 'chambres disponibles' : 'chambre disponible' }}">
+                                    <i class="fa-solid fa-bed">: </i>
+                                    <h2>{{ gite.nbChambres }}</h2>
+                                </div>
+                                <div class="flex flex-row items-center space-x-2" title="surface de {{ gite.surface }} m²">
+                                    <i class="fa-solid fa-ruler-combined">: </i>
+                                    <h2>{{ gite.surface}} m²</h2>
+                                </div>
+                            </div>
+                            <div class="flex flex-row items-center space-x-4">
+                                <div class="flex flex-row items-center space-x-2" title="Peut accueillir jusqu'à {{ gite.nbChambres *2 }} adultes">
+                                    <i class="fa-solid fa-user">: </i>
+                                    <h2>{{ gite.nbChambres * 2 }}</h2>
+                                </div>
+                                <div class="flex flex-row items-center space-x-2" title="Peut accueillir jusqu'à {{ gite.nbLits - gite.nbChambres }} {{ (gite.nbLits - gite.nbChambres) > 1 ? 'enfants' : 'enfant'}}">
+                                    <i class="fa-solid fa-children">: </i>
+                                    <h2>{{ gite.nbLits - gite.nbChambres }}</h2>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="flex items-center mt-1">
-                            <div class="">
-                                <i class="fa-solid fa-location-dot"></i>
+                        <div class="flex flex-row">
+                            <div class="flex flex-1 items-center mt-2">
+                                <div class="">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div class="flex-1 text-xs">
+                                    <p class="text-xs">{{ gite.ville.getNom() }}</p>
+                                    <p>{{ gite.ville.departement.getNom() }}</p>
+                                    <p>
+                                        {{ gite.ville.departement.region.getNom() }}
+                                    </p>
+                                </div>
                             </div>
-                            <div class="flex-1 text-xs">
-                                <p class="text-xs">{{ gite.ville.getNom() }}</p>
-                                <p>{{ gite.ville.departement.getNom() }}</p>
-                                <p>
-                                    {{ gite.ville.departement.region.getNom() }}
-                                </p>
+                            <div class="flex flex-col justify-center space-y-1 mt-2">
+                                {% if gite.acceptAnimaux %}
+                                <i
+                                    class="fa-solid fa-dog text-xl"
+                                    title="Chiens acceptés, surplus par reservation {{ gite.tarifAnimaux }} €"
+                                ></i>
+                                {% endif %}
+                                {% if gite.hasPool() %}
+                                <i
+                                    class="fa-solid fa-water-ladder text-xl"
+                                    title="Piscine disponible"
+                                ></i>
+                                {% endif %}
+                                
                             </div>
                         </div>
-                    </div>
-                    <div class="flex flex-row justify-center space-x-2 mt-2">
-                        {% if gite.acceptAnimaux %}
-                        <i
-                            class="fa-solid fa-dog"
-                            title="Chiens acceptés, surplus par reservation {{ gite.tarifAnimaux }} €"
-                        ></i>
-                        {% endif %}
-                        {% if gite.hasPool() %}
-                            <i
-                            class="fa-solid fa-water-ladder"
-                            title="Piscine disponible"
-                        ></i>
-                        {% endif %}
-                        
                     </div>
                 </div>
             </a>

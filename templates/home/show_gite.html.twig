@@ -10,27 +10,32 @@
                     <h1 class="text-center mb-5 text-3xl">{{ gite.nomGite}}</h1>
                     <div class="info flex h-full flex-row justify-center pb-4 border-b-2 border-dashed">
                         <img src="{{ gite.image}}" class=" h-60 rounded-xl"/>
-                        <div class="flex flex-row">
-                            <div class="flex list-none flex-col ml-10">
-                                <li><i class="fa-solid fa-bed"></i>: </li>
-                                <li><i class="fa-solid fa-ruler-combined"></i>: </li>
-                                <li><i class="fa-solid fa-user">: </i></li>
-                                <li><i class="fa-solid fa-children">: </i></li>
-                                {% if gite.acceptAnimaux %}
-                                <li><i class="fa-solid fa-dog" ></i></li>
-                                {% endif %}
-                                    <li class="mt-[7rem] text-xl"><i class="fa-solid fa-coins"></i></li>
+                        <div class="flex flex-col">
+                            <div class="flex flex-row">
+                                <div class="flex list-none flex-col ml-10">
+                                    <li><i class="fa-solid fa-bed"></i>: </li>
+                                    <li><i class="fa-solid fa-ruler-combined"></i>: </li>
+                                    <li><i class="fa-solid fa-user">: </i></li>
+                                    <li><i class="fa-solid fa-children">: </i></li>
+                                    {% if gite.acceptAnimaux %}
+                                    <li><i class="fa-solid fa-dog" ></i></li>
+                                    {% endif %}
+                                    
+                                </div>
+                                <div class="flex list-none flex-col ml-10 max-w-[100px]">
+                                    <li>{{ gite.nbChambres}}</li>
+                                    <li>{{ gite.surface}} m²</li>
+                                    <li>{{ gite.nbChambres * 2 }}</li>
+                                    <li>{{ gite.nbLits - gite.nbChambres }}</li>
+                                    {% if gite.acceptAnimaux %}
+                                        <li>{{ gite.tarifAnimaux }}€</li>
+                                    {% endif %}
+                                    
+                                </div>
                             </div>
-                            <div class="flex list-none flex-col ml-10">
-                                <li>{{ gite.nbChambres}}</li>
-                                <li>{{ gite.surface}} m²</li>
-                                <li>{{ gite.nbChambres * 2 }}</li>
-                                <li>{{ gite.nbLits - gite.nbChambres }}</li>
-                                {% if gite.acceptAnimaux %}
-                                    <li>{{ gite.tarifAnimaux }}€</li>
-                                {% endif %}
-                                
-                                <li class="mt-[7rem] text-l">{{ gite.prix.tarif }} € /nuit</i></li>
+                            <div class="flex flex-row">
+                                <li class="flex flex-col list-none mt-[7rem] ml-10 text-xl justify-center"><i class="fa-solid fa-coins"></i></li>
+                                <li class="max-w-[100px] list-none ml-10 mt-[7rem] text-l {{ style }}">{{ tarif }}</i></li>
                             </div>
                         </div>
                     </div>
@@ -77,8 +82,14 @@
                     </div>
                 </div>
             </div>
-            <div class="reservation bg-gold-dark-opacity flex flex-col border mt-2 rounded-xl p-5 ml-5">
-                <div class="date">
+            <div class="reservation bg-gold-dark-opacity flex flex-col border mt-2 rounded-xl p-5 ml-5 text-center">
+                {{ form_start(form) }}
+                    {{ form_rest(form) }}
+
+                
+                    <button class=" bg-dark-color rounded-full mt-5 text-gold-light p-2">Vérifier les tarifs pour ces dates</button>
+                {{ form_end(form) }}
+                {# <div class="date">
                     <div class="entree m-4">
                         <h2>Date d'arrivée</h2>
                         <input type="date" name="arrivee" id="arrivee" class="rounded pl-2">
@@ -88,7 +99,7 @@
                         <input type="date" name="depart" id="depart" class="rounded pl-2">
                     </div>
                 </div>
-                <button class=" bg-dark-color rounded-full mt-5 text-gold-light">Reserver</button>
+                <button class=" bg-dark-color rounded-full mt-5 text-gold-light">Reserver</button> #}
             
             </div>
         </div>
