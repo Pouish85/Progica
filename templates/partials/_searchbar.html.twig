@@ -1,3 +1,7 @@
+{# {% block javascript %}
+    <script src="{{ asset('../assets/javascript/extendSearch.js') }}"></script>
+{% endblock %} #}
+
 <div>
     <div class="h-40 bg-black mt-1 flex flex-row items-center justify-center rounded-lg 2xl:w-[1500px] xl:w-[1260px] lg:w-[1000px] md:w-[750px] sm:w-screen">
         {{ form_start(form) }}
@@ -7,12 +11,12 @@
                 {{ form_widget(form.nbChambres, {'attr': { 'class': 'text-black rounded 2xl:text-[16px] xl:text-[14px] md:text-[12px] w-[50px]'}}) }}
             </div>
             <div class="flex flex-col align-middle justify-center text-center items-center 2xl:mr-4" >
-                <p class="text-white mb-8 text-[17px] md:text-[15px]">Animaux acceptés:</p>
+                <p class="text-white mb-8 text-[17px] md:text-[15px] ">Animaux acceptés:</p>
                 {{ form_widget(form.acceptAnimaux, {'attr': { 'class': 'text-black rounded 2xl:text-[16px] xl:text-[14px] md:text-[12px] w-[50px] roundedCheckBox'}}) }}
             </div>
             <div>
                 <div class="flex flex-col align-middle justify-center text-center items-center 2xl:mr-4" >
-                    <p class="text-white mb-8 text-[17px] md:text-[15px]">Ville:</p>
+                    <p class="text-white {{ form.ville.vars.value is not empty ? 'mb-2' : 'mb-8' }} text-[17px] md:text-[15px] ">Ville:</p>
                     {{ form_widget(form.ville, {'attr': { 'class': 'text-black rounded 2xl:text-[16px] xl:text-[14px] w-[120px]'}}) }}
                 </div>
             {% if form.ville.vars.value is not empty %}

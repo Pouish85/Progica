@@ -117,4 +117,8 @@ class Contact
 
         return $this;
     }
+    public function getFullname(): string
+    {
+        return $this->nom . ' ' . $this->prenom;
+    }
 }
