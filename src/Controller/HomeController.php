@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Data\SearchData;
 use App\Form\BookingType;
 use App\Form\SearchBarType;
+use App\Form\SearchData;
 use App\Repository\GiteRepository;
 use App\Repository\PrixRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,7 +20,9 @@ class HomeController extends AbstractController
         $gites = $giteRepository->findAll();
         $options = [];
         $searchData = new SearchData();
-        $searchForm = $this->createForm(SearchBarType::class, $searchData);
+        $searchForm = $this->createForm(SearchBarType::class, null, [
+            'data_class' => SearchData::class,
+        ]);
         // $searchForm->remove('extendToDepartement');
         // $searchForm->remove('extendToRegion');
         $searchForm->handleRequest($request);
