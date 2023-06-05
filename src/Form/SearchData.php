@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data;
+namespace App\Form;
 
 use App\Entity\Ville;
 use App\Entity\Departement;
