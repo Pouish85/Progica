@@ -15,6 +15,7 @@ module.exports = {
             "warning-color": "#FFA630",
             white: "#FFFFFF",
             black: "#000000",
+            grey: "#949494",
         },
         fontFamily: {
             "merriweather-sans": ['"Merriweather Sans"', "sans-serif"],

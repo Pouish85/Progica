@@ -7,6 +7,7 @@ use App\Entity\Departement;
 use App\Entity\EquipementExterieur;
 use App\Entity\EquipementInterieur;
 use App\Entity\Gite;
+use App\Entity\Prix;
 use App\Entity\Proprietaire;
 use App\Entity\Region;
 use App\Entity\Service;
@@ -16,6 +17,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -61,7 +64,7 @@ class NewGiteType extends AbstractType
                 ],
                 'label' => false
             ])
-            ->add('tarifAnimaux', TextType::class, [
+            ->add('tarifAnimaux', IntegerType::class, [
                 'required' => false,
                 'attr' => [
                     'class' => 'rounded-xl px-2 w-[00px]'
@@ -77,6 +80,10 @@ class NewGiteType extends AbstractType
             ])
             ->add('ville', EntityType::class, [
                 'class' => Ville::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('v')
+                        ->orderBy('v.nom', 'ASC');
+                },
                 'choice_label' => 'nom',
                 'required' => false,
                 'attr' => [
@@ -93,16 +100,16 @@ class NewGiteType extends AbstractType
                 ],
                 'label' => false
             ])
-            ->add('region', EntityType::class, [
-                'class' => Region::class,
-                'choice_label' => 'nom',
-                'required' => false,
-                'attr' => [
-                    'class' => 'rounded-xl px-2 text-sm w-[144px]'
-                ],
-                'label' => false
-            ])
-            ->add('nouvelleVille', TextType::class, [
+            // ->add('region', EntityType::class, [
+            //     'class' => Region::class,
+            //     'choice_label' => 'nom',
+            //     'required' => false,
+            //     'attr' => [
+            //         'class' => 'rounded-xl px-2 text-sm w-[144px]'
+            //     ],
+            //     'label' => false
+            // ])
+            ->add('nouvelleVilleNom', TextType::class, [
                 'required' => false,
                 'attr' => [
                     'class' => 'rounded-xl px-2 w-[144px]'
@@ -125,12 +132,15 @@ class NewGiteType extends AbstractType
                 ],
                 'label' => false
             ])
-            ->add('prix', TextType::class, [
+            ->add('prix', EntityType::class, [
+                'class' => Prix::class,
+                'choice_label' => 'tarif',
                 'required' => false,
                 'attr' => [
                     'class' => 'rounded-xl px-2 w-[00px]'
                 ],
-                'label' => false
+                'label' => false,
+                'mapped' => false,
             ])
             ->add('equipementInterieur', EntityType::class, [
                 'class' => EquipementInterieur::class,
@@ -177,7 +187,7 @@ class NewGiteType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Gite::class,
+            'data_class' => NewGite::class,
         ]);
     }
 }

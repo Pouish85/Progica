@@ -5,17 +5,20 @@ namespace App\Form;
 use App\Data\SearchData;
 use App\Entity\EquipementInterieur;
 use App\Entity\EquipementExterieur;
+use App\Entity\Gite;
 use App\Entity\Service;
 use App\Entity\Ville;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\ChoiceList\Factory\Cache\GroupBy;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Doctrine\ORM\Query\Expr;
 
 class SearchBarType extends AbstractType
 {
@@ -43,6 +46,20 @@ class SearchBarType extends AbstractType
                     '9' => 9,
                 ]
             ])
+            // ->add('nbChambres', EntityType::class, [
+            //     'class' => Gite::class,
+            //     'choice_label' => 'nbChambres',
+            //     'multiple' => false,
+            //     'query_builder' => function (EntityRepository $er) {
+            //         return $er->createQueryBuilder('g')
+            //             ->groupBy('g.nbChambres')
+            //             ->orderBy('g.nbChambres', 'ASC');
+            //     },
+            //     'label_attr' => [
+            //         'class' => 'flex flex-row justify-start '
+            //     ],
+            //     'required' => false
+            // ])
             ->add('acceptAnimaux', CheckboxType::class, [
                 'label' => 'Accepte les animaux',
                 'label_attr' => [

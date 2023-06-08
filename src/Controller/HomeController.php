@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Data\SearchData;
 use App\Form\BookingType;
 use App\Form\SearchBarType;
+use App\Form\SearchData;
 use App\Repository\GiteRepository;
 use App\Repository\PrixRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,7 +20,9 @@ class HomeController extends AbstractController
         $gites = $giteRepository->findAll();
         $options = [];
         $searchData = new SearchData();
-        $searchForm = $this->createForm(SearchBarType::class, $searchData);
+        $searchForm = $this->createForm(SearchBarType::class, null, [
+            'data_class' => SearchData::class,
+        ]);
         // $searchForm->remove('extendToDepartement');
         // $searchForm->remove('extendToRegion');
         $searchForm->handleRequest($request);
@@ -36,7 +38,7 @@ class HomeController extends AbstractController
             $equipementExterieur = $searchFormData->getEquipementExterieur();
             $service = $searchFormData->getService();
 
-            // dd($searchFormData);
+            // dd($nbChambres);
             if ($nbChambres !== null) {
                 $options['nbChambres'] = $nbChambres;
             }
@@ -98,7 +100,11 @@ class HomeController extends AbstractController
         $bookingForm = $this->createForm(BookingType::class);
         $bookingForm->handleRequest($request);
         // dd($gite->getId());
-        $tarif = "{$prixRepository->findPriceForAGiteId($gite->getId())->getTarif()} € /nuit";
+
+        //Tarif a vérifier
+        // $tarif = "{$prixRepository->findPriceForAGiteId($gite->getId())->getTarif()} € /nuit";
+
+
         $style = "";
         // dd($tarif->getTarif());
         if ($bookingForm->isSubmitted() && $bookingForm->isValid()) {
@@ -115,6 +121,9 @@ class HomeController extends AbstractController
         }
         // dd($tarif);
 
-        return $this->render('home/show_gite.html.twig', ["gite" => $gite, "equipementsInt" => $equipementsInterieurs, "equipementsExt" => $equipementsExterieurs, "services" => $servicesGite, 'form' => $bookingForm->createView(), 'tarif' => $tarif, 'style' => $style]);
+
+        //Tarif a vérifier
+        // return $this->render('home/show_gite.html.twig', ["gite" => $gite, "equipementsInt" => $equipementsInterieurs, "equipementsExt" => $equipementsExterieurs, "services" => $servicesGite, 'form' => $bookingForm->createView(), 'tarif' => $tarif, 'style' => $style]);
+        return $this->render('home/show_gite.html.twig', ["gite" => $gite, "equipementsInt" => $equipementsInterieurs, "equipementsExt" => $equipementsExterieurs, "services" => $servicesGite, 'form' => $bookingForm->createView(), 'style' => $style]);
     }
 }

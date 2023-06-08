@@ -1,183 +1,234 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Hello GiteController!{% endblock %}
-
-{% block body %}
+{% extends 'base.html.twig' %} {% block title %}Hello GiteController!{% endblock
+%} {% block body %}
 
 <div class="flex flex-col h-[calc(100vh-96px-48px)]">
     <div class="bg-gold-light-opacity rounded-xl my-2">
         <h1 class="text-center text-2xl my-4">Ajout d'un nouveau Gite</h1>
         <div class="flex justify-center space-y-5">
-            {{ form_start(form, {'attr': {'class': 'space-y-2 text-center mb-8'}}) }}
-                <div class="flex flex-col w-[500px] space-y-2">
-                    <div class="grid grid-cols-2">
-                        <p class="text-left">Nom du gite:</p>
-                        {{ form_widget(form.nomGite) }}
-                    </div>
-                    <div class="grid grid-cols-2">
-                        <p class="text-left">Surface:</p>
-                        {{ form_widget(form.surface) }}
-                    </div>
-                    <div class="grid grid-cols-2">
-                        <p class="text-left">Nombre de chambres:</p>
-                        {{ form_widget(form.nbChambres) }}
-                    </div>
-                    <div class="grid grid-cols-2">
-                        <p class="text-left">Nombre de lits:</p>
-                        {{ form_widget(form.nbLits) }}
-                    </div>
-                    <div class="grid grid-cols-2 items-center align-middle justify-center text-center">
-                        <p class="text-left">Animaux acceptés:</p>
-                        {{ form_widget(form.acceptAnimaux) }}
-                    </div>
-                    <div class="grid grid-cols-2">
-                        <p class="text-left">Tarif animaux:</p>
-                        {{ form_widget(form.tarifAnimaux) }}
-                    </div>
-                    <div class="grid grid-cols-2">
-                        <p class="text-left">Photo de votre gite:</p>
-                        {{ form_widget(form.image) }}
-                    </div>
-                    <div class="grid grid-cols-2">
-                        <p class="text-left">Ville:</p>
-                        <div class="flex flex-row">
-                            {{ form_widget(form.ville) }}
-                            <div class="button-container flex h-full items-center align-middle ml-2">
-                                <p class="bg-white rounded text-sm px-2 cursor-pointer" id="newCity">Nouvelle ville</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="blockCity" class="hidden">
-                        <div class='grid grid-cols-2'>
-                            <p class='text-left'> choix du departement </p>
-                            <div class='flex flex-row'>
-                                {{ form_widget(form.departement) }}
-                                <div class='flex h-full items-center align-middle ml-2'>
-                                    <p class='bg-white rounded text-sm px-2 cursor-pointer' id='newDepartement'>Nouveau Département</p>
-                                </div>   
-                            </div>
-                        </div>
-                    </div>
-                    <div id="blockDepartement" class="hidden">
-                        <div class='grid grid-cols-2'>
-                            <p class='text-left'> choix de la région </p>
-                            <div class='flex flex-row'>
-                                {{ form_widget(form.region) }}
-                                <div class='flex h-full items-center align-middle ml-2'>
-                                    <p class='bg-white rounded text-sm px-2 cursor-pointer' id='newRegion'>Nouvelle région</p>
-                                </div>   
-                            </div>
-                        </div>
-                    </div>
-                    <div id="newCityName" class="hidden">
-                        <div class='grid grid-cols-2'>
-                            <p class='text-left'> Nom de la ville: </p>
-                            <div class='flex flex-row'>
-                                {{ form_widget(form.nouvelleVille) }}
-                                <div class='flex h-full items-center align-middle justify-center text-center ml-2'>
-                                    <p class='bg-white rounded text-sm px-2 cursor-pointer'>Valider</p>
-                                </div>   
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2">
-                        <p class="text-left">Propriétaire:</p>
-                        <div class="flex flex-row">
-                            {{ form_widget(form.proprietaire) }}
-                            <div class="button-container flex h-full items-center align-middle ml-2">
-                                <p class="bg-white rounded text-sm">Nouveau propritaire:</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2">
-                        <p class="text-left">Contact:</p>
-                        <div class="flex flex-row">
-                            {{ form_widget(form.contact) }}
-                            <div class="button-container flex h-full items-center align-middle ml-2">
-                                <p class="bg-white rounded text-sm">Nouveau contact:</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2">
-                        <p class="text-left">Prix:</p>
-                        {{ form_widget(form.prix) }}
-                    </div>
-                    <div class="grid grid-cols-2">
-                        <p class="text-left">Equipements interieur:</p>
-                        <div class="flex flex-row">
-                            {{ form_widget(form.equipementInterieur, {'attr': { 'class': 'choices-container'}}) }}
-                            <div class="button-container flex h-full items-center align-middle ml-2">
-                                <p class="bg-white rounded text-sm">Nouveau service:</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2">
-                        <p class="text-left">Equipement Exterieur:</p>
-                        <div class="flex flex-row">
-                            {{ form_widget(form.equipementExterieur, {'attr': { 'class': 'choices-container'}}) }}
-                            <div class="button-container flex h-full items-center align-middle ml-2">
-                                <p class="bg-white rounded text-sm">Nouveau service:</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2">
-                        <p class="text-left">Service:</p>
-                        <div class="flex flex-row">
-                            {{ form_widget(form.service, {'attr': { 'class': 'choices-container'}}) }}
-                            <div class="button-container flex h-full items-center align-middle ml-2">
-                                <p class="bg-white rounded text-sm">Nouveau service:</p>
-                            </div>
-                        </div>
-                    </div>
-                
+            {{ form_start(form, {'attr': {'class': 'space-y-2 text-center mb-8'
+
+
+
+
+
+
+
+
+
+
+
+
+            }}) }}
+            <div class="flex flex-col w-[500px] space-y-2">
+                <div class="grid grid-cols-2">
+                    <p class="text-left">Nom du gite:</p>
+                    {{ form_widget(form.nomGite) }}
                 </div>
-                
-                
-                
-                {{ form_rest(form) }}
+                <div class="grid grid-cols-2">
+                    <p class="text-left">Surface:</p>
+                    {{ form_widget(form.surface) }}
+                </div>
+                <div class="grid grid-cols-2">
+                    <p class="text-left">Nombre de chambres:</p>
+                    {{ form_widget(form.nbChambres) }}
+                </div>
+                <div class="grid grid-cols-2">
+                    <p class="text-left">Nombre de lits:</p>
+                    {{ form_widget(form.nbLits) }}
+                </div>
+                <div
+                    class="grid grid-cols-2 items-center align-middle justify-center text-center"
+                >
+                    <p class="text-left">Animaux acceptés:</p>
+                    {{ form_widget(form.acceptAnimaux) }}
+                </div>
+                <div class="grid grid-cols-2">
+                    <p class="text-left">Tarif animaux:</p>
+                    {{ form_widget(form.tarifAnimaux) }}
+                </div>
+                <div class="grid grid-cols-2">
+                    <p class="text-left">Photo de votre gite:</p>
+                    {{ form_widget(form.image) }}
+                </div>
+                <div class="grid grid-cols-2">
+                    <p class="text-left">Ville:</p>
+                    <div class="flex flex-row">
+                        {{ form_widget(form.ville) }}
+                        <div
+                            class="button-container flex h-full items-center align-middle ml-2"
+                        >
+                            <p
+                                class="bg-white rounded text-sm px-2 cursor-pointer"
+                                id="newCity"
+                            >
+                                Nouvelle ville
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div id="blockCity" class="hidden">
+                    <div class="grid grid-cols-2">
+                        <p class="text-left">choix du departement</p>
+                        <div class="flex flex-row">
+                            {{ form_widget(form.departement) }}
+                            <div
+                                class="flex h-full items-center align-middle ml-2"
+                            >
+                                <p
+                                    class="bg-white rounded text-sm px-2 cursor-pointer"
+                                    id="newDepartement"
+                                >
+                                    Valider
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="newCityName" class="hidden">
+                    <div class="grid grid-cols-2">
+                        <p class="text-left">Nom de la ville:</p>
+                        <div class="flex flex-row">
+                            {{ form_widget(form.nouvelleVilleNom) }}
+                            <div
+                                class="flex h-full items-center align-middle justify-center text-center ml-2"
+                            >
+                                <p
+                                    class="bg-white rounded text-sm px-2 cursor-pointer"
+                                >
+                                    Valider
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2">
+                    <p class="text-left">Propriétaire:</p>
+                    <div class="flex flex-row">
+                        {{ form_widget(form.proprietaire) }}
+                        <div
+                            class="button-container flex h-full items-center align-middle ml-2"
+                        >
+                            <p class="bg-white rounded text-sm">
+                                Nouveau propritaire:
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2">
+                    <p class="text-left">Contact:</p>
+                    <div class="flex flex-row">
+                        {{ form_widget(form.contact) }}
+                        <div
+                            class="button-container flex h-full items-center align-middle ml-2"
+                        >
+                            <p class="bg-white rounded text-sm">
+                                Nouveau contact:
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2">
+                    <p class="text-left">Prix:</p>
+                    {{ form_widget(form.prix) }}
+                </div>
+                <div class="grid grid-cols-2">
+                    <p class="text-left">Equipements interieur:</p>
+                    <div class="flex flex-row">
+                        {{ form_widget(form.equipementInterieur, {'attr': { 'class': 'choices-container'
+
+
+
+
+
+
+
+
+
+
+
+
+                        }}) }}
+                        <div
+                            class="button-container flex h-full items-center align-middle ml-2"
+                        >
+                            <p class="bg-white rounded text-sm">
+                                Nouvel équipement:
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2">
+                    <p class="text-left">Equipement Exterieur:</p>
+                    <div class="flex flex-row">
+                        {{ form_widget(form.equipementExterieur, {'attr': { 'class': 'choices-container'
+
+
+
+
+
+
+
+
+
+
+
+
+                        }}) }}
+                        <div
+                            class="button-container flex h-full items-center align-middle ml-2"
+                        >
+                            <p class="bg-white rounded text-sm">
+                                Nouvel équipement:
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2">
+                    <p class="text-left">Service:</p>
+                    <div class="flex flex-row">
+                        {{ form_widget(form.service, {'attr': { 'class': 'choices-container'
+
+
+
+
+
+
+
+
+
+
+
+
+                        }}) }}
+                        <div
+                            class="button-container flex h-full items-center align-middle ml-2"
+                        >
+                            <p class="bg-white rounded text-sm">
+                                Nouveu service:
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {# q- #}
+            </div>
+
+            {{ form_rest(form) }}
 
             {{ form_end(form) }}
         </div>
     </div>
-    
 </div>
 
-
 <script>
-    
     const newCityButton = document.getElementById("newCity");
     const blockCity = document.getElementById("blockCity");
     const newCityName = document.getElementById("newCityName");
 
-    newCityButton.addEventListener('click', function() {
+    newCityButton.addEventListener("click", function () {
         blockCity.classList.toggle("hidden");
         newCityName.classList.toggle("hidden");
     });
-
-    const newDepartementButton = document.getElementById("newDepartement");
-    const blockDepartement = document.getElementById("blockDepartement");
-
-    newDepartementButton.addEventListener('click', function() {
-        blockDepartement.classList.toggle("hidden");
-    });
-
-    $(document).ready(function() {
-        $('#nom_du_champ_ville').change(function() {
-            var selectedVille = $(this).val();
-            var $departementField = $('#nom_du_champ_departement');
-            
-            // Vérifiez si la valeur sélectionnée est non vide
-            if (selectedVille !== '') {
-                // Ajoutez la classe "remplie" au champ departement
-                $departementField.addClass('remplie');
-            } else {
-                // Supprimez la classe "remplie" du champ departement
-                $departementField.removeClass('remplie');
-            }
-        });
-    });
 </script>
-
-
 
 {% endblock %}

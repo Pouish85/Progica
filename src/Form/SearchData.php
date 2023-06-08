@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data;
+namespace App\Form;
 
 use App\Entity\Ville;
 use App\Entity\Departement;
@@ -9,6 +9,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class SearchData
 {
+    /**
+     * @Assert\Type(type="int")
+     */
     private $nbChambres;
     private $acceptAnimaux;
     private $ville;
