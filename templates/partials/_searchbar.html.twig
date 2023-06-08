@@ -1,33 +1,80 @@
+{# {% block javascript %}
+<script src="{{ asset('../assets/javascript/extendSearch.js') }}"></script>
+{% endblock %} #}
+
 <div>
-    <div class="h-40 bg-black mt-1 flex flex-row items-center justify-center rounded-lg 2xl:w-[1500px] xl:w-[1260px] lg:w-[1000px] md:w-[750px] sm:w-screen">
+    <div
+        class="h-40 bg-black mt-1 flex flex-row items-center justify-center rounded-lg 2xl:w-[1500px] xl:w-[1260px] lg:w-[1000px] md:w-[750px] sm:w-screen"
+    >
         {{ form_start(form) }}
-        <div class="flex flex-row justify-center items-start text-center 2xl:space-x-4 xl:space-x-2 lg:space-x-1">
-            <div class="flex flex-col align-middle justify-center text-center items-center 2xl:mr-4 mr-1" >
-                <p class="text-white mb-8 text-[17px] md:text-[15px]">Nombre de chambres:</p>
-                {{ form_widget(form.nbChambres, {'attr': { 'class': 'text-black rounded 2xl:text-[16px] xl:text-[14px] md:text-[12px] w-[50px]'}}) }}
+        <div
+            class="flex flex-row justify-center items-start text-center 2xl:space-x-4 xl:space-x-2 lg:space-x-1"
+        >
+            <div
+                class="flex flex-col align-middle justify-center text-center items-center 2xl:mr-4 mr-1"
+            >
+                <p class="text-white mb-8 text-[17px] md:text-[15px]">
+                    Nombre de chambres:
+                </p>
+                {{ form_widget(form.nbChambres, {'attr': { 'class': 'text-black rounded 2xl:text-[16px] xl:text-[14px] md:text-[12px] w-[50px]'
+
+
+
+
+                }}) }}
             </div>
-            <div class="flex flex-col align-middle justify-center text-center items-center 2xl:mr-4" >
-                <p class="text-white mb-8 text-[17px] md:text-[15px]">Animaux acceptés:</p>
-                {{ form_widget(form.acceptAnimaux, {'attr': { 'class': 'text-black rounded 2xl:text-[16px] xl:text-[14px] md:text-[12px] w-[50px] roundedCheckBox'}}) }}
+            <div
+                class="flex flex-col align-middle justify-center text-center items-center 2xl:mr-4"
+            >
+                <p class="text-white mb-8 text-[17px] md:text-[15px]">
+                    Animaux acceptés:
+                </p>
+                {{ form_widget(form.acceptAnimaux, {'attr': { 'class': 'text-black rounded 2xl:text-[16px] xl:text-[14px] md:text-[12px] w-[50px] roundedCheckBox'
+
+
+
+
+                }}) }}
             </div>
             <div>
-                <div class="flex flex-col align-middle justify-center text-center items-center 2xl:mr-4" >
-                    <p class="text-white mb-8 text-[17px] md:text-[15px]">Ville:</p>
-                    {{ form_widget(form.ville, {'attr': { 'class': 'text-black rounded 2xl:text-[16px] xl:text-[14px] w-[120px]'}}) }}
+                <div
+                    class="flex flex-col align-middle justify-center text-center items-center 2xl:mr-4"
+                >
+                    <p
+                        class="text-white {{ form.ville.vars.value is not empty ? 'mb-2' : 'mb-8' }} text-[17px] md:text-[15px] "
+                    >
+                        Ville:
+                    </p>
+                    {{ form_widget(form.ville, {'attr': { 'class': 'text-black rounded 2xl:text-[16px] xl:text-[14px] w-[120px]'
+
+
+
+
+                    }}) }}
                 </div>
-            {% if form.ville.vars.value is not empty %}
-                <div class="flex flex-col align-middle justify-center text-center items-center 2xl:mr-4">
-                    <p class="text-white mb-2 text-[17px] md:text-[15px]">Etendre la recherche?</p>
+                {% if form.ville.vars.value is not empty %}
+                <div
+                    class="flex flex-col align-middle justify-center text-center items-center 2xl:mr-4"
+                >
+                    <p class="text-white mb-2 text-[17px] md:text-[15px]">
+                        Etendre la recherche?
+                    </p>
                     <div class="flex flex-row space-x-2">
-                        <div class="flex flex-col text-center w-full items-center">
-                            <label for="" class="text-white text-xs mb-1">Département?</label>
+                        <div
+                            class="flex flex-col text-center w-full items-center"
+                        >
+                            <label for="" class="text-white text-xs mb-1"
+                                >Département?</label
+                            >
                             <label class="switch">
                                 {{ form_widget(form.extendToDepartement) }}
                                 <span class="slider round"></span>
                             </label>
                         </div>
                         <div class="flex flex-col w-full items-center">
-                            <label for="" class="text-white text-xs mb-1">Région?</label>
+                            <label for="" class="text-white text-xs mb-1"
+                                >Région?</label
+                            >
                             <label class="switch">
                                 {{ form_widget(form.extendToRegion) }}
                                 <span class="slider round"></span>
@@ -35,45 +82,84 @@
                         </div>
                     </div>
                 </div>
-            {% endif %}
+                {% endif %}
             </div>
-            <div class="flex flex-col align-middle justify-center text-center items-center ml-4" >
-                <p class="text-white mb-2 text-[17px] md:text-[15px]">Equipement Intérieur:</p>
-                {{ form(form.equipementInterieur, {'attr': { 'class': 'choices-container'}}) }}
+            <div
+                class="flex flex-col align-middle justify-center text-center items-center ml-4"
+            >
+                <p class="text-white mb-2 text-[17px] md:text-[15px]">
+                    Equipement Intérieur:
+                </p>
+                {{ form(form.equipementInterieur, {'attr': { 'class': 'choices-container'
+
+
+
+
+                }}) }}
             </div>
-            <div class="flex flex-col align-middle justify-center text-center items-center ml-4" >
-                <p class="text-white mb-2 text-[17px] md:text-[15px]">Equipement Extérieur:</p>
-                {{ form_widget(form.equipementExterieur, {'attr': { 'class': 'choices-container'}}) }}
+            <div
+                class="flex flex-col align-middle justify-center text-center items-center ml-4"
+            >
+                <p class="text-white mb-2 text-[17px] md:text-[15px]">
+                    Equipement Extérieur:
+                </p>
+                {{ form_widget(form.equipementExterieur, {'attr': { 'class': 'choices-container'
+
+
+
+
+                }}) }}
             </div>
-            <div class="flex flex-col align-middle justify-center text-center items-center ml-4" >
-                <p class="text-white mb-2 text-[17px] md:text-[15px]">Service:</p>
-                {{ form_widget(form.service, {'attr': { 'class': 'choices-container'}}) }}
+            <div
+                class="flex flex-col align-middle justify-center text-center items-center ml-4"
+            >
+                <p class="text-white mb-2 text-[17px] md:text-[15px]">
+                    Service:
+                </p>
+                {{ form_widget(form.service, {'attr': { 'class': 'choices-container'
+
+
+
+
+                }}) }}
             </div>
             <div class="flex flex-col 2xl:justify-end justify-center h-32 ml-8">
                 <div class="flex 2xl:flex-row flex-col 2xl:space-x-2 space-y-2">
-                    <button class="text-black px-2 py-1 bg-white rounded-full md:text-[15px]">Rechercher</button>
-                    <a href="/" class="text-black px-2 py-1 bg-white rounded-full" ><i class="fa-solid fa-rotate-left md:text-[15px]"></i ></a>
+                    <button
+                        class="text-black px-2 py-1 bg-white rounded-full md:text-[15px] hover:bg-grey duration-200 hover:translate-y-0.5"
+                    >
+                        Rechercher
+                    </button>
+                    <a
+                        href="/"
+                        class="text-black px-2 py-1 bg-white rounded-full hover:bg-grey duration-200 hover:border-none hover:translate-y-0.5"
+                        ><i class="fa-solid fa-rotate-left md:text-[15px]"></i
+                    ></a>
                 </div>
             </div>
         </div>
-            {{form_rest(form, {'attr': {'class': 'invisible'}})}}
+        {{form_rest(form, {'attr': {'class': 'invisible'}})}}
         {{ form_end(form) }}
     </div>
 
-        
     <script>
-    const departementCheckbox = document.getElementById("search_bar_extendToDepartement");
-    const regionCheckbox = document.getElementById("search_bar_extendToRegion");
+        const departementCheckbox = document.getElementById(
+            "search_bar_extendToDepartement"
+        );
+        const regionCheckbox = document.getElementById(
+            "search_bar_extendToRegion"
+        );
 
-    departementCheckbox.addEventListener("change", function() {
-        if (departementCheckbox.checked) {
-            regionCheckbox.checked = false;
-        }
-    });
+        departementCheckbox.addEventListener("change", function () {
+            if (departementCheckbox.checked) {
+                regionCheckbox.checked = false;
+            }
+        });
 
-    regionCheckbox.addEventListener("change", function() {
-        if (regionCheckbox.checked) {
-            departementCheckbox.checked = false;
-        }
-    });
+        regionCheckbox.addEventListener("change", function () {
+            if (regionCheckbox.checked) {
+                departementCheckbox.checked = false;
+            }
+        });
     </script>
+</div>

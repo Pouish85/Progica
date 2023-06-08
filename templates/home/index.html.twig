@@ -12,9 +12,6 @@
                 href="{{ path('show_gite', {id: gite.id}) }}"
                 class="flex flex-col border align-middle justify-center bg-gold-light-opacity p-5 max-w-sm text-center m-1 rounded-md"
             >
-                {#
-                <h1 class="text-gold-dark font-bold">Nom de gite</h1>
-                #}
                 <h1 class="text-gold-dark font-bold">{{ gite.getNomGite()}}</h1>
                 <img
                     src="{{ gite.image }}"
@@ -23,23 +20,7 @@
                 />
                 <div class="info mt-2">
                     <div class="flex flex-col">
-                    {# <div class="flex flex-col"> #}
-                        {# <div class="flex items-center">
-                            <div>
-                                <i class="fa-solid fa-bed"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h2>{{ gite.nbChambres}}</h2>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <div>
-                                <i class="fa-solid fa-ruler-combined"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h2>{{ gite.surface}} m²</h2>
-                            </div>
-                        </div> #}
+                    
                         <div class="flex flex-row justify-center space-x-4">
                             <div class="flex flex-row items-center space-x-4">
                                 <div class="flex flex-row items-center space-x-2" title="{{ gite.nbChambres }} {{ gite.nbChambres > 1 ? 'chambres disponibles' : 'chambre disponible' }}">

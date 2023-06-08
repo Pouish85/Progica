@@ -17,50 +17,53 @@ class Gite
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nomGite = null;
+    public ?string $nomGite = null;
 
     #[ORM\Column]
-    private ?float $surface = null;
+    public ?float $surface = null;
 
     #[ORM\Column]
-    private ?int $nbChambres = null;
+    public ?int $nbChambres = null;
 
     #[ORM\Column]
-    private ?int $nbLits = null;
+    public ?int $nbLits = null;
 
     #[ORM\Column]
-    private ?bool $acceptAnimaux = null;
+    public ?bool $acceptAnimaux = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2, nullable: true)]
-    private ?string $tarifAnimaux = null;
+    public ?string $tarifAnimaux = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $image = null;
+    public ?string $image = null;
 
     #[ORM\ManyToOne(inversedBy: 'gites')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Ville $ville = null;
+    public ?Ville $ville = null;
 
     #[ORM\ManyToOne(inversedBy: 'gites')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Proprietaire $proprietaire = null;
+    public ?Proprietaire $proprietaire = null;
 
     #[ORM\ManyToOne(inversedBy: 'gites')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Contact $contact = null;
+    public ?Contact $contact = null;
 
     #[ORM\ManyToOne(inversedBy: 'gites')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Prix $prix = null;
+    #[ORM\JoinColumn(nullable: true)]
+    public ?Prix $prix = null;
 
     #[ORM\ManyToMany(targetEntity: EquipementInterieur::class, inversedBy: 'gites')]
-    private Collection $equipementInterieur;
+    public Collection $equipementInterieur;
 
     #[ORM\ManyToMany(targetEntity: EquipementExterieur::class, inversedBy: 'gites')]
-    private Collection $equipementExterieur;
+    public Collection $equipementExterieur;
 
     #[ORM\ManyToMany(targetEntity: Service::class, inversedBy: 'gites')]
-    private Collection $service;
+    public Collection $service;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
+    private ?string $tarifLocation = null;
 
     public function __construct()
     {
@@ -288,6 +291,53 @@ class Gite
     public function removeService(Service $service): self
     {
         $this->service->removeElement($service);
+
+        return $this;
+    }
+
+    // public function getDepartement(): ?Departement
+    // {
+    //     return $this->ville->getDepartement();
+    // }
+
+    // public function setDepartement(?Departement $departement): void
+    // {
+    //     $this->departement = $departement;
+    // }
+
+    // public function getRegion(): ?Region
+    // {
+    //     return $this->ville->getDepartement()->getRegion();
+    // }
+
+    // public function setRegion(?Region $region): void
+    // {
+    //     $this->region = $region;
+    // }
+
+    public function setEquipementExterieur($equipementExterieur)
+    {
+        $this->equipementExterieur = $equipementExterieur;
+    }
+
+    public function setEquipementInterieur($equipementInterieur)
+    {
+        $this->equipementInterieur = $equipementInterieur;
+    }
+
+    public function setService($service)
+    {
+        $this->service = $service;
+    }
+
+    public function getTarifLocation(): ?string
+    {
+        return $this->tarifLocation;
+    }
+
+    public function setTarifLocation(string $tarifLocation): self
+    {
+        $this->tarifLocation = $tarifLocation;
 
         return $this;
     }

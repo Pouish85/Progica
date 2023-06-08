@@ -28,6 +28,9 @@ class Prix
     #[ORM\OneToMany(mappedBy: 'prix', targetEntity: Gite::class)]
     private Collection $gites;
 
+    #[ORM\Column(type: Types::DECIMAL, precision: 4, scale: 2)]
+    private ?string $majoration = null;
+
     public function __construct()
     {
         $this->gites = new ArrayCollection();
@@ -100,6 +103,18 @@ class Prix
                 $gite->setPrix(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMajoration(): ?string
+    {
+        return $this->majoration;
+    }
+
+    public function setMajoration(string $majoration): self
+    {
+        $this->majoration = $majoration;
 
         return $this;
     }

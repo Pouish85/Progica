@@ -40,21 +40,28 @@ class PrixRepository extends ServiceEntityRepository
         }
     }
 
-    public function findPriceForAGiteId($giteId)
-    {
-        return $this->createQueryBuilder('p')
-            ->where('p.id = :giteId')
-            ->setParameter('giteId', $giteId)
-            ->getQuery()
-            ->getOneOrNullResult();
-    }
+    // public function findPriceForAGiteId($giteId)
+    // {
+    //     return $this->createQueryBuilder('p')
+    //         ->where('p.id = :giteId')
+    //         ->setParameter('giteId', $giteId)
+    //         ->getQuery()
+    //         ->getOneOrNullResult();
+    // }
 
 
-    public function findPriceByDate(DateTime $dateDebut)
+    public function findPriceByDate(DateTime $dateDebut, $tarifLocation)
     {
         return $this->createQueryBuilder('p')
+            // ->where(':dateDebut BETWEEN p.debut AND p.fin')
+            // ->setParameter('dateDebut', $dateDebut)
+            // ->getQuery()
+            // ->getOneOrNullResult();
+            // ->select('p.tarif')
+            ->select('p.majoration * :tarifLocation')
             ->where(':dateDebut BETWEEN p.debut AND p.fin')
             ->setParameter('dateDebut', $dateDebut)
+            ->setParameter('tarifLocation', $tarifLocation)
             ->getQuery()
             ->getOneOrNullResult();
     }

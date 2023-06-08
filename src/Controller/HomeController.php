@@ -38,7 +38,7 @@ class HomeController extends AbstractController
             $equipementExterieur = $searchFormData->getEquipementExterieur();
             $service = $searchFormData->getService();
 
-            // dd($searchFormData);
+            // dd($nbChambres);
             if ($nbChambres !== null) {
                 $options['nbChambres'] = $nbChambres;
             }
@@ -99,24 +99,37 @@ class HomeController extends AbstractController
 
         $bookingForm = $this->createForm(BookingType::class);
         $bookingForm->handleRequest($request);
+
+        $tarifLocation = $gite->getTarifLocation();
         // dd($gite->getId());
-        $tarif = "{$prixRepository->findPriceForAGiteId($gite->getId())->getTarif()} € /nuit";
+
+        //Tarif a vérifier
+        // $tarif = "{$prixRepository->findPriceForAGiteId($gite->getId())->getTarif()} € /nuit";
+        $tarif = "{$tarifLocation} € /nuit";
+
+
+        // dd($tarif);
         $style = "";
         // dd($tarif->getTarif());
         if ($bookingForm->isSubmitted() && $bookingForm->isValid()) {
             $bookingFormData = $bookingForm->getData();
             $dateDebut = $bookingFormData->getDebut();
 
-            $tarif = $prixRepository->findPriceByDate($dateDebut);
+            $tarif = $prixRepository->findPriceByDate($dateDebut, $tarifLocation);
+            // $tarif = $giteRepository->findPriceByDate($dateDebut, $tarifLocation);
+            // dd($tarif);
             if ($tarif === null) {
                 $tarif = "Pas de tarif enregistré pour cette date";
-                $style = "text-danger-color font-bold text-center";
+                $style = "font-bold text-center text-danger-color ";
             } else {
-                $tarif = "{$tarif->getTarif()} € /nuit";
+                $tarif = "{$tarif[1]} € /nuit";
             }
         }
         // dd($tarif);
 
+
+        //Tarif a vérifier
         return $this->render('home/show_gite.html.twig', ["gite" => $gite, "equipementsInt" => $equipementsInterieurs, "equipementsExt" => $equipementsExterieurs, "services" => $servicesGite, 'form' => $bookingForm->createView(), 'tarif' => $tarif, 'style' => $style]);
+        // return $this->render('home/show_gite.html.twig', ["gite" => $gite, "equipementsInt" => $equipementsInterieurs, "equipementsExt" => $equipementsExterieurs, "services" => $servicesGite, 'form' => $bookingForm->createView(), 'style' => $style]);
     }
 }
