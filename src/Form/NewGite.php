@@ -16,7 +16,7 @@ class NewGite
     public $equipementInterieur;
     public $equipementExterieur;
     public $service;
-    public $prix;
+    public $tarifLocation;
     public $nomGite;
     public $surface;
     public $nbLits;
@@ -115,14 +115,14 @@ class NewGite
         return $this;
     }
 
-    public function getPrix()
+    public function getTarifLocation()
     {
-        return $this->prix;
+        return $this->tarifLocation;
     }
 
-    public function setPrix($prix): self
+    public function setTarifLocation($tarifLocation): self
     {
-        $this->prix = $prix;
+        $this->tarifLocation = $tarifLocation;
 
         return $this;
     }

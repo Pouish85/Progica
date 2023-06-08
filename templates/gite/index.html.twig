@@ -1,20 +1,11 @@
-{% extends 'base.html.twig' %} {% block title %}Hello GiteController!{% endblock
-%} {% block body %}
+{% extends 'base.html.twig' %} {% block title %}Création d'un nouveau gite{%
+endblock %} {% block body %}
 
 <div class="flex flex-col h-[calc(100vh-96px-48px)]">
     <div class="bg-gold-light-opacity rounded-xl my-2">
         <h1 class="text-center text-2xl my-4">Ajout d'un nouveau Gite</h1>
         <div class="flex justify-center space-y-5">
             {{ form_start(form, {'attr': {'class': 'space-y-2 text-center mb-8'
-
-
-
-
-
-
-
-
-
 
 
 
@@ -109,7 +100,7 @@
                         <div
                             class="button-container flex h-full items-center align-middle ml-2"
                         >
-                            <p class="bg-white rounded text-sm">
+                            <p class="bg-white rounded text-sm hidden">
                                 Nouveau propritaire:
                             </p>
                         </div>
@@ -122,7 +113,7 @@
                         <div
                             class="button-container flex h-full items-center align-middle ml-2"
                         >
-                            <p class="bg-white rounded text-sm">
+                            <p class="bg-white rounded text-sm hidden">
                                 Nouveau contact:
                             </p>
                         </div>
@@ -130,29 +121,18 @@
                 </div>
                 <div class="grid grid-cols-2">
                     <p class="text-left">Prix:</p>
-                    {{ form_widget(form.prix) }}
+                    {{ form_widget(form.tarifLocation) }}
                 </div>
                 <div class="grid grid-cols-2">
                     <p class="text-left">Equipements interieur:</p>
                     <div class="flex flex-row">
                         {{ form_widget(form.equipementInterieur, {'attr': { 'class': 'choices-container'
 
-
-
-
-
-
-
-
-
-
-
-
                         }}) }}
                         <div
                             class="button-container flex h-full items-center align-middle ml-2"
                         >
-                            <p class="bg-white rounded text-sm">
+                            <p class="bg-white rounded text-sm hidden">
                                 Nouvel équipement:
                             </p>
                         </div>
@@ -163,22 +143,11 @@
                     <div class="flex flex-row">
                         {{ form_widget(form.equipementExterieur, {'attr': { 'class': 'choices-container'
 
-
-
-
-
-
-
-
-
-
-
-
                         }}) }}
                         <div
                             class="button-container flex h-full items-center align-middle ml-2"
                         >
-                            <p class="bg-white rounded text-sm">
+                            <p class="bg-white rounded text-sm hidden">
                                 Nouvel équipement:
                             </p>
                         </div>
@@ -189,23 +158,12 @@
                     <div class="flex flex-row">
                         {{ form_widget(form.service, {'attr': { 'class': 'choices-container'
 
-
-
-
-
-
-
-
-
-
-
-
                         }}) }}
                         <div
                             class="button-container flex h-full items-center align-middle ml-2"
                         >
-                            <p class="bg-white rounded text-sm">
-                                Nouveu service:
+                            <p class="bg-white rounded text-sm hidden">
+                                Nouveau service:
                             </p>
                         </div>
                     </div>

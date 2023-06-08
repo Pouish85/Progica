@@ -62,6 +62,9 @@ class Gite
     #[ORM\ManyToMany(targetEntity: Service::class, inversedBy: 'gites')]
     public Collection $service;
 
+    #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
+    private ?string $tarifLocation = null;
+
     public function __construct()
     {
         $this->equipementInterieur = new ArrayCollection();
@@ -325,5 +328,17 @@ class Gite
     public function setService($service)
     {
         $this->service = $service;
+    }
+
+    public function getTarifLocation(): ?string
+    {
+        return $this->tarifLocation;
+    }
+
+    public function setTarifLocation(string $tarifLocation): self
+    {
+        $this->tarifLocation = $tarifLocation;
+
+        return $this;
     }
 }

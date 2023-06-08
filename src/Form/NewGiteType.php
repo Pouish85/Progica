@@ -132,15 +132,12 @@ class NewGiteType extends AbstractType
                 ],
                 'label' => false
             ])
-            ->add('prix', EntityType::class, [
-                'class' => Prix::class,
-                'choice_label' => 'tarif',
+            ->add('tarifLocation', NumberType::class, [
                 'required' => false,
                 'attr' => [
                     'class' => 'rounded-xl px-2 w-[00px]'
                 ],
                 'label' => false,
-                'mapped' => false,
             ])
             ->add('equipementInterieur', EntityType::class, [
                 'class' => EquipementInterieur::class,
@@ -180,7 +177,10 @@ class NewGiteType extends AbstractType
                 'label' => false
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Créer le gite'
+                'label' => 'Créer le gite',
+                'attr' => [
+                    'class' => 'rounded-xl px-2 w-[00px] bg-white hover:bg-grey duration-200 hover:border-none hover:translate-y-0.5'
+                ],
             ]);
     }
 

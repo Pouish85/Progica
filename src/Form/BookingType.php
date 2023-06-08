@@ -33,7 +33,7 @@ class BookingType extends AbstractType
                 'fin',
                 DateType::class,
                 [
-                    'data' => new \DateTime('+1 day'), // Définit la date actuelle par défaut
+                    'data' => new \DateTime('+1 day'),
                 ]
             );
     }

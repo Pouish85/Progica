@@ -39,8 +39,9 @@ class GiteController extends AbstractController
 
 
 
-
+            // dd($newGiteFormData);
             $newGite->setNomGite($newGiteFormData->nomGite);
+            $newGite->setTarifLocation($newGiteFormData->tarifLocation);
             $newGite->setSurface($newGiteFormData->surface);
             $newGite->setNbChambres($newGiteFormData->nbChambres);
             $newGite->setNbLits($newGiteFormData->nbLits);
@@ -67,7 +68,7 @@ class GiteController extends AbstractController
             $newGite->setEquipementInterieur($newGiteFormData->equipementInterieur);
             // $newGite->setService($newGiteFormData->service);
 
-            // dd($NewGite);
+            // dd($newGite);
 
             $em->persist($newGite);
             $em->flush();
