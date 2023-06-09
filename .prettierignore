@@ -1,1 +1,4 @@
 templates/home/index.html.twig
+templates/partials/_header.html.twig
+templates/security/index.html.twig
+templates/security/signin.html.twig

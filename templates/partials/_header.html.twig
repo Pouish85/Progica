@@ -1,3 +1,8 @@
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
 <div class="flex flex-col 2xl:w-[1500px] xl:w-[1260px] lg:w-[1000px] md:w-[750px] sm:w-screen">
     <div class="flex flex-col">
         <div
@@ -18,19 +23,30 @@
                     </p>
                 </div>
                 <div class=" pr-4">
-                    <button
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <div>
+                        <h1>Salut {{app.user.prenom}}</h1>
+                    </div>
+                    <a href="{{ asset('/logout') }}"
+                        class="rounded-full py-1 px-2 mr-2 hover:bg-gold-dark duration-500 border-[1px] border-gold-light hover:border-none"
+                    >
+                        Deconnexion
+                    </a>
+                    {% else %}
+                    <a href="{{ asset('/signup') }}"
                         class="rounded-full py-1 px-2 mr-2 hover:bg-gold-dark duration-500 border-[1px] border-gold-light hover:border-none"
                     >
                         Inscription
-                    </button>
-                    <button
+                    </a>
+                    <a
+                        href="{{ asset('/signin') }}"
                         class="rounded-full py-1 px-2 hover:bg-gold-dark duration-500 border-[1px] border-gold-dark hover:border-none"
                     >
                         Connexion
-                    </button>
+                    </a>
+                    {% endif %}
+                    
                 </div>
             </div>
         </div>
     </div>
-
-

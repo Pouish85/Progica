@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<div class="flex flex-col">
+    <div class="flex h-[calc(100vh-96px-48px)] overflow-auto">
+        <div class="bg-grey p-4">
+            {{ form_start(form) }}
+                {{ form_rest(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
