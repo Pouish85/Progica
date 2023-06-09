@@ -116,14 +116,6 @@ class NewGiteType extends AbstractType
                 ],
                 'label' => false
             ])
-            ->add('proprietaire', EntityType::class, [
-                'class' => Proprietaire::class,
-                'choice_label' => 'fullname',
-                'attr' => [
-                    'class' => 'rounded-xl px-2 text-sm w-[144px]'
-                ],
-                'label' => false
-            ])
             ->add('contact', EntityType::class, [
                 'class' => Contact::class,
                 'choice_label' => 'fullname',

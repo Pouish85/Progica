@@ -53,7 +53,7 @@ class UserType extends AbstractType
             ])
             ->add('role', ChoiceType::class, [
                 'choices' => [
-                    'propriétaire' => 'Prorietaire',
+                    'propriétaire' => 'Proprietaire',
                     'utilisateur' => 'Utilisateur',
                 ],
                 'label' => 'Choisissez votre rôle: ',

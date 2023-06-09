@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
 use App\Repository\GiteRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -41,9 +42,9 @@ class Gite
     #[ORM\JoinColumn(nullable: false)]
     public ?Ville $ville = null;
 
-    #[ORM\ManyToOne(inversedBy: 'gites')]
-    #[ORM\JoinColumn(nullable: false)]
-    public ?Proprietaire $proprietaire = null;
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(name: 'proprietaire_id', referencedColumnName: 'id')]
+    private $proprietaire;
 
     #[ORM\ManyToOne(inversedBy: 'gites')]
     #[ORM\JoinColumn(nullable: false)]
@@ -187,12 +188,12 @@ class Gite
         return $this;
     }
 
-    public function getProprietaire(): ?Proprietaire
+    public function getProprietaire(): ?User
     {
         return $this->proprietaire;
     }
 
-    public function setproprietaire(?Proprietaire $proprietaire): self
+    public function setproprietaire(?User $proprietaire): self
     {
         $this->proprietaire = $proprietaire;
 

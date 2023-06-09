@@ -25,7 +25,10 @@
                 <div class=" pr-4">
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     <div>
-                        <h1>Salut {{app.user.prenom}}</h1>
+                        <h1>Salut {{app.user.prenom}} role: {{ app.user.role }}</h1>
+                        {% if app.user.role == 'Proprietaire' %}
+                            <a href="{{ asset('/newGite') }}">Nouveau Gite</a>
+                        {% endif %}
                     </div>
                     <a href="{{ asset('/logout') }}"
                         class="rounded-full py-1 px-2 mr-2 hover:bg-gold-dark duration-500 border-[1px] border-gold-light hover:border-none"
