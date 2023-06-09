@@ -34,8 +34,16 @@ class UserType extends AbstractType
                 ],
                 'invalid_message' => 'les mots de passe de correspondent pas',
                 'required' => false,
-                'first_options' => ['label' => 'Mot de passe'],
+                'first_options' => [
+                    'label' => 'Mot de passe',
+                    'label_attr' => [
+                        'class' => 'flex flex-row justify-start'
+                    ]
+                ],
                 'second_options' => ['label' => 'Vérification du mot de passe'],
+                'attr' => [
+                    'class' => 'flex flex-row justify-between'
+                ]
             ])
             ->add('nom', TextType::class, [
                 'attr' => [
@@ -59,13 +67,13 @@ class UserType extends AbstractType
                 'label' => 'Choisissez votre rôle: ',
                 'expanded' => true,
                 'attr' => [
-                    'class' => 'rounded-xl'
+                    'class' => 'grid grid-cols-2'
                 ],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => "S'inscrire",
                 'attr' => [
-                    'class' => 'p-2 rounded-xl bg-grey'
+                    'class' => ''
                 ]
             ]);
     }

@@ -3,13 +3,40 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-<div class="flex flex-col">
+<div class="flex flex-col items-center">
     <div class="flex h-[calc(100vh-96px-48px)] overflow-auto">
-        <div class="bg-grey p-4">
-            {{ form_start(form) }}
-                {{ form_rest(form) }}
-            {{ form_end(form) }}
-        </div>
+        {{ form_start(form) }}
+            <div class="bg-grey p-4 rounded-xl m-2 space-y-2">
+
+                <div class="flex flex-row w-[500pw] justify-between">
+                    <p>Adresse e-mail:</p>
+                    {{ form_widget(form.email) }}
+                </div>
+                <div class="flex flex-row w-[500pw] justify-between">
+                    {{ form_label(form.password.first) }}
+                    {{ form_widget(form.password.first) }}
+                </div>
+                <div class="flex flex-row w-[500pw] justify-between">
+                    {{ form_label(form.password.second) }}
+                    {{ form_widget(form.password.second) }}
+                </div>
+                <div class="flex flex-row w-[500pw] justify-between">
+                    <p>Nom:</p>
+                    {{ form_widget(form.nom) }}
+                </div>
+                <div class="flex flex-row w-[500pw] justify-between">
+                    <p>Prenom:</p>
+                    {{ form_widget(form.prenom) }}
+                </div>
+                <div class="flex flex-row w-[500pw] justify-between">
+                    <p>role:</p>
+                    {{ form_widget(form.role) }}
+                </div>
+                <div class="flex flex-row w-[500pw] justify-end">
+                    {{ form_widget(form.submit, {'attr': {'class': 'flex p-2 rounded-xl bg-white hover:bg-primary-color hover:translate-y-1 duration-500'}}) }}
+                </div>
+            </div>
+        {{ form_end(form) }}
     </div>
 </div>
 {% endblock %}

@@ -3,20 +3,28 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-{% if error %}
+{# {% if error %}
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-{% endif %}
-
-<form action="{{ path('signin') }}" method="post">
-    <label for="username">Email:</label>
-    <input type="email" id="email" name="_username" value="{{ username }}">
-
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="_password">
-
-    {# If you want to control the URL the user is redirected to on success #}
-    <input type="hidden" name="home" value="/account">
-
-    <button type="submit">login</button>
-</form>
+{% endif %} #}
+<div class="flex flex-col items-center">
+    <div class="flex h-[calc(100vh-96px-48px)] overflow-auto">
+        <div>
+            <form action="{{ path('signin') }}" method="post" class="bg-grey p-4 rounded-xl m-2 space-y-4 flex flex-col">
+                <div class="flex flex-col">
+                    <label for="username">Email:</label>
+                    <input type="email" id="email" name="_username" value="{{ username }}">
+                </div>
+            
+                <div class="flex flex-col">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="_password">
+                </div>
+                
+                <input type="hidden" name="home" value="/account">
+                <button type="submit" class="flex p-2 rounded-xl bg-white hover:bg-primary-color hover:translate-y-1 duration-500 w-[80px] h-[30px] justify-center items-center">login</button>
+                
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
